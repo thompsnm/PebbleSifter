@@ -8,6 +8,7 @@ public class HartmannGameStatusScraper {
     private Document doc;
 
     private final String ELEMENT_PATH = "#Game_Status p";
+    private final String SCRAPER_NAME = "Hartmann Game Status";
 
     public HartmannGameStatusScraper() {
         try {
@@ -19,5 +20,9 @@ public class HartmannGameStatusScraper {
 
     public String scrape() {
         return doc.select(ELEMENT_PATH).text().toString();
+    }
+
+    public String getName() {
+        return SCRAPER_NAME;
     }
 }
