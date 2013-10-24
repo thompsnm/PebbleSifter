@@ -7,6 +7,8 @@ public class HartmannGameStatusScraper {
 
     private Document doc;
 
+    private final String ELEMENT_PATH = "#Game_Status p";
+
     public HartmannGameStatusScraper() {
         try {
             doc = Jsoup.connect("http://inlinerink.com/Home").get();
@@ -16,6 +18,6 @@ public class HartmannGameStatusScraper {
     }
 
     public String scrape() {
-        return doc.toString();
+        return doc.select(ELEMENT_PATH).text().toString();
     }
 }
