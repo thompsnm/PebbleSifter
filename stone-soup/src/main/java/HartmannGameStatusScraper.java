@@ -3,7 +3,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-public class HartmannGameStatusScraper {
+public class HartmannGameStatusScraper extends StoneSoupScraper {
 
     private Document doc;
 
