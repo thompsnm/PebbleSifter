@@ -1,7 +1,10 @@
+import sifters.HartmannGameStatusScraper;
+import sifters.PebbleSifter;
+
 public class main {
     public static void main(String [] args) {
-        StoneSoupScraper stoneSoupScraper = new HartmannGameStatusScraper();
-        System.out.println(stoneSoupScraper.getName());
-        System.out.println(stoneSoupScraper.scrape());
+        PebbleSifter pebbleSifter = new HartmannGameStatusScraper();
+        System.out.println(pebbleSifter.getName());
+        System.out.println(pebbleSifter.scrape());
     }
 }
