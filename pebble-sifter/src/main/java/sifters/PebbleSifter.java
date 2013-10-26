@@ -1,4 +1,6 @@
-public abstract class StoneSoupScraper {
+package sifters;
+
+public abstract class PebbleSifter {
 
     public abstract String scrape();
 

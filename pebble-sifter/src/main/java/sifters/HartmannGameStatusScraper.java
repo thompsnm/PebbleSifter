@@ -1,9 +1,11 @@
+package sifters;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-public class HartmannGameStatusScraper extends StoneSoupScraper {
+public class HartmannGameStatusScraper extends PebbleSifter {
 
     private Document doc;
 
