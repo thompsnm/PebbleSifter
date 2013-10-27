@@ -1,4 +1,4 @@
-package sifters;
+package com.pebblesifter.sifters;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

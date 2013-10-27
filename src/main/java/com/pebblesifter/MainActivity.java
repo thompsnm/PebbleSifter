@@ -1,8 +1,10 @@
-package com.example.pebblesifter;
+package com.pebblesifter;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+
+import com.example.pebblesifter.R;
 
 public class MainActivity extends Activity {
 

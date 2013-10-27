@@ -1,4 +1,4 @@
-package sifters;
+package com.pebblesifter.sifters;
 
 public abstract class PebbleSifter {
 
