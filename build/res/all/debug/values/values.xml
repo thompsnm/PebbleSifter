@@ -7,7 +7,8 @@
     <!-- From: file:/C:/projects/PebbleSifter/src/main/res/values/strings.xml -->
     <string name="action_settings">Settings</string>
     <string name="app_name">Pebble Sifter</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="sifted_text">Sifted Text</string>
+    <string name="sifter_name">Sifter Name</string>
     <!-- From: file:/C:/projects/PebbleSifter/src/main/res/values/styles.xml -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
