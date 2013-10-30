@@ -3,6 +3,7 @@
 
     <string name="app_name">Pebble Sifter</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="sifter_name">Sifter Name</string>
+    <string name="sifted_text">Sifted Text</string>
 
 </resources>

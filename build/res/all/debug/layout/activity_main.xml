@@ -9,9 +9,18 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/sifter_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:textStyle="bold"
+        android:text="@string/sifter_name" />
+
+    <TextView
+        android:id="@+id/sifted_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sifter_name"
+        android:text="@string/sifted_text" />
 
 </RelativeLayout>
 <!-- From: file:/C:/projects/PebbleSifter/src/main/res/layout/activity_main.xml -->

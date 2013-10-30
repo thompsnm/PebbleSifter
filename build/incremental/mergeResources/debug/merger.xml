@@ -48,7 +48,9 @@
                 </string>
                 <string name="app_name" >Pebble Sifter
                 </string>
-                <string name="hello_world" >Hello world!
+                <string name="sifter_name" >Sifter Name
+                </string>
+                <string name="sifted_text" >Sifted Text
                 </string>
             </file>
             <file
