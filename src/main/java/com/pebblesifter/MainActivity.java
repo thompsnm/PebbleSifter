@@ -8,10 +8,16 @@ import com.example.pebblesifter.R;
 
 public class MainActivity extends Activity {
 
+	PebbleSifter sifter = new TeamTriviaAnswerSifter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		TextView name = (TextView) findViewById(R.id.sifter_name);
+		name.setText(sifter.getName());
+		TextView name = (TextView) findViewById(R.id.sifted_text);
+		name.setText(sifter.sift());
     }
 
 
