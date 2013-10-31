@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
         SetSifter setSifter = new SetSifter();
         setSifter.execute();
         TextView name = (TextView) findViewById(R.id.sifter_name);
-        name.setText("Name");
+        name.setText(sifter.getName());
         TextView siftedText = (TextView) findViewById(R.id.sifted_text);
         siftedText.setText("Text");
     }
