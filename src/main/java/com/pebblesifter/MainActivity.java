@@ -11,16 +11,25 @@ import com.pebblesifter.sifters.TeamTriviaAnswerSifter;
 
 public class MainActivity extends Activity {
 
-//	PebbleSifter sifter = new TeamTriviaAnswerSifter();
+	PebbleSifter sifter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//		TextView name = (TextView) findViewById(R.id.sifter_name);
-//		name.setText("Name");
-//		TextView siftedText = (TextView) findViewById(R.id.sifted_text);
-//		siftedText.setText("Text");
+
+		new AsyncTask() {
+			public void doInBackground(String... params) {
+				sifter = new TeamTriviaAnswerSifter();
+			}
+
+			public void onPostExecute(Document result) {
+				TextView name = (TextView) findViewById(R.id.sifter_name);
+				name.setText("Name");
+				TextView siftedText = (TextView) findViewById(R.id.sifted_text);
+				siftedText.setText("Text");
+			}
+		}.execute();
     }
 
 
