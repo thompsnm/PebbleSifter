@@ -1,4 +1,4 @@
-package com.pebblesifter;
+package com.pebbleScraper;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,12 +7,12 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.pebblesifter.R;
-import com.pebblesifter.sifters.PebbleSifter;
-import com.pebblesifter.sifters.TeamTriviaAnswerSifter;
+import com.pebbleScraper.scrapers.PebbleSiteScraper;
+import com.pebbleScraper.scrapers.TeamTriviaAnswerScraper;
 
 public class MainActivity extends Activity {
 
-	PebbleSifter sifter;
+	PebbleSiteScraper sifter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,11 @@ public class MainActivity extends Activity {
     public class SetSifter extends AsyncTask {
 
         @Override
-        protected PebbleSifter doInBackground(Object[] objects) {
-            return new TeamTriviaAnswerSifter();
+        protected PebbleSiteScraper doInBackground(Object[] objects) {
+            return new TeamTriviaAnswerScraper();
         }
 
-        public void execute(PebbleSifter pebbleSifter) {
+        public void execute(PebbleSiteScraper pebbleSifter) {
             sifter = pebbleSifter;
         }
     }
