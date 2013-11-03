@@ -2,6 +2,7 @@ package com.pebbleScraper.asyncTasks;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -41,12 +42,24 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
     protected void onPostExecute(ArrayList<String> scraperNames) {
         ArrayList<Button> scraperButtons = new ArrayList<Button>();
 
-        SetSifter setSifter = new SetSifter(activity, scrapers.get(0));
-        setSifter.execute();
+        SetSifter setSifter = new SetSifter(activity);
+        setSifter.execute(scrapers.get(0));
 
-        for (String scraperName : scraperNames) {
+        for (int i = 0; i < scraperNames.size(); i++) {
+            final PebbleSiteScraper scraper = scrapers.get(i);
+
             Button scraperButton = new Button(activity);
-            scraperButton.setText(scraperName);
+            scraperButton.setText(scraperNames.get(i));
+
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SetSifter setSifter = new SetSifter(activity);
+                    setSifter.execute(scraper);
+                }
+            };
+
+            scraperButton.setOnClickListener(listener);
             scraperButtons.add(scraperButton);
         }
 
