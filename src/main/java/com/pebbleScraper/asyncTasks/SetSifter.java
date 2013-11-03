@@ -13,14 +13,13 @@ public class SetSifter extends AsyncTask<PebbleSiteScraper, Integer, PebbleSiteS
     Activity activity;
     PebbleSiteScraper scraper;
 
-    public SetSifter(Activity activity, PebbleSiteScraper pebbleSiteScraper) {
+    public SetSifter(Activity activity) {
         this.activity = activity;
-        scraper = pebbleSiteScraper;
     }
 
     @Override
     protected PebbleSiteScraper doInBackground(PebbleSiteScraper... pebbleScrapers) {
-        this.scraper = new TeamTriviaAnswerScraper();
+        this.scraper = pebbleScrapers[0];
         return this.scraper;
     }
 

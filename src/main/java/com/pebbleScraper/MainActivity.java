@@ -1,23 +1,11 @@
 package com.pebbleScraper;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.*;
-import android.widget.TextView;
-import android.content.Context;
 
 import com.example.pebblesifter.R;
 import com.pebbleScraper.asyncTasks.DrawApp;
-import com.pebbleScraper.scrapers.HartmannGameStatusScraper;
-import com.pebbleScraper.scrapers.PebbleSiteScraper;
-import com.pebbleScraper.scrapers.TeamTriviaAnswerScraper;
-
-import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
