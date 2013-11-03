@@ -1,4 +1,4 @@
-StoneSoup
+Pebble Scrapper
 =========
 
-Pebble app to interface with JSoup site scrapers
+Pebble app to interface with JSoup site scrapers.
