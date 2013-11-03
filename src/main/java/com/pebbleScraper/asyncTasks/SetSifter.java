@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.example.pebblesifter.R;
 import com.pebbleScraper.scrapers.PebbleSiteScraper;
-import com.pebbleScraper.scrapers.TeamTriviaAnswerScraper;
 
 public class SetSifter extends AsyncTask<PebbleSiteScraper, Integer, PebbleSiteScraper> {
 

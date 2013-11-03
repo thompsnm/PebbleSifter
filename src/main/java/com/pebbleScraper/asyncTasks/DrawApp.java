@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.pebblesifter.R;
-import com.pebbleScraper.scrapers.HartmannGameStatusScraper;
+import com.pebbleScraper.scrapers.exampleScrapers.HartmannGameStatusScraper;
 import com.pebbleScraper.scrapers.PebbleSiteScraper;
-import com.pebbleScraper.scrapers.TeamTriviaAnswerScraper;
+import com.pebbleScraper.scrapers.exampleScrapers.TeamTriviaAnswerScraper;
 
 import java.util.ArrayList;
 
