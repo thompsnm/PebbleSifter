@@ -19,8 +19,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SetSifter setSifter = new SetSifter();
-        setSifter.execute();
+		
+		DrawApp drawApp = new DrawApp();
+		drawApp.execute();
     }
 
     @Override
@@ -29,15 +30,36 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+	
+	private class DrawApp extends AsyncTask<void, Integer, void> {
+	
+		ArrayList<PebbleScraper> scrapers;
+	
+		@Override
+        protected void doInBackground(void) {
+            scrapers.add(new TeamTriviaAnswerScraper());
+			scrapers.add(new HartmannGameStatusScraper());
+			
+			Button myButton = new Button(this);
+			myButton.setText("Push Me");
 
-    private class SetSifter extends AsyncTask<Object[], Integer, PebbleSiteScraper> {
+			LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
+			LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+			ll.addView(myButton, lp);
+			
+			SetSifter setSifter = new SetSifter(scrapers.get(0));
+			setSifter.execute();
+        }
+	}
+
+    private class SetSifter extends AsyncTask<PebbleSiteScraper, Integer, PebbleSiteScraper> {
 
         PebbleSiteScraper scraper;
 
         @Override
-        protected PebbleSiteScraper doInBackground(Object[]... objects) {
-            scraper = new TeamTriviaAnswerScraper();
-            return scraper;
+        protected PebbleSiteScraper doInBackground(PebbleSiteScraper... pebbleScraper) {
+            scraper = pebbleScraper;
+            return this.scraper;
         }
 
         @Override
