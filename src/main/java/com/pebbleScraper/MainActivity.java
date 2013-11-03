@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.TextView;
+import android.content.Context;
 
 import com.example.pebblesifter.R;
 import com.pebbleScraper.scrapers.PebbleSiteScraper;
@@ -12,7 +13,7 @@ import com.pebbleScraper.scrapers.TeamTriviaAnswerScraper;
 
 public class MainActivity extends Activity {
 
-	PebbleSiteScraper sifter;
+	PebbleSiteScraper scraper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +21,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         SetSifter setSifter = new SetSifter();
         setSifter.execute();
-        TextView name = (TextView) findViewById(R.id.sifter_name);
-        name.setText(sifter.getName());
-        TextView siftedText = (TextView) findViewById(R.id.sifted_text);
-        siftedText.setText("Text");
     }
 
     @Override
@@ -33,15 +30,23 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    public class SetSifter extends AsyncTask {
+    private class SetSifter extends AsyncTask<Object[], Integer, PebbleSiteScraper> {
+
+        PebbleSiteScraper scraper;
 
         @Override
-        protected PebbleSiteScraper doInBackground(Object[] objects) {
-            return new TeamTriviaAnswerScraper();
+        protected PebbleSiteScraper doInBackground(Object[]... objects) {
+            scraper = new TeamTriviaAnswerScraper();
+            return scraper;
         }
 
-        public void execute(PebbleSiteScraper pebbleSifter) {
-            sifter = pebbleSifter;
+        @Override
+        protected void onPostExecute(PebbleSiteScraper pebbleScraper) {
+            scraper = pebbleScraper;
+            TextView name = (TextView) findViewById(R.id.sifter_name);
+            name.setText(scraper.getName());
+            TextView siftedText = (TextView) findViewById(R.id.sifted_text);
+            siftedText.setText(scraper.scrape());
         }
     }
     
