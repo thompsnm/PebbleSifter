@@ -1,4 +1,6 @@
-package com.pebbleScraper.scrapers;
+package com.pebbleScraper.scrapers.exampleScrapers;
+
+import com.pebbleScraper.scrapers.PebbleSiteScraper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
