@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.*;
 import android.widget.TextView;
@@ -26,9 +27,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SetSifter setSifter = new SetSifter();
-        setSifter.execute();
-		
 		DrawApp drawApp = new DrawApp(this);
 		drawApp.execute();
     }
@@ -40,9 +38,10 @@ public class MainActivity extends Activity {
         return true;
     }
 	
-	private class DrawApp extends AsyncTask<Object, Integer, Object> {
-	
+	private class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
+
 		ArrayList<PebbleSiteScraper> scrapers = new ArrayList<PebbleSiteScraper>();
+        ArrayList<String> scraperNames = new ArrayList<String>();
         Context context;
 
         public DrawApp(Context context) {
@@ -50,21 +49,38 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        protected Object doInBackground(Object... objects) {
+        protected ArrayList<String> doInBackground(Object... objects) {
+            // As new scrapers are implemented, add them here.
             scrapers.add(new TeamTriviaAnswerScraper());
 			scrapers.add(new HartmannGameStatusScraper());
 
-			Button myButton = new Button(context);
-			myButton.setText("Push Me");
+            for (PebbleSiteScraper scraper : scrapers) {
+                scraperNames.add(scraper.getName());
+            }
 
-//            RelativeLayout rl = (RelativeLayout)findViewById(R.id.button_layout);
-//			LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-//			rl.addView(myButton, lp);
-//
-//			SetSifter setSifter = new SetSifter(scrapers.get(0));
-//			setSifter.execute();
+            return scraperNames;
+        }
 
-            return null;
+        @Override
+        protected void onPostExecute(ArrayList<String> scraperNames) {
+            ArrayList<Button> scraperButtons = new ArrayList<Button>();
+
+			SetSifter setSifter = new SetSifter(scrapers.get(0));
+			setSifter.execute();
+
+            for (String scraperName : scraperNames) {
+                Button scraperButton = new Button(context);
+                scraperButton.setText(scraperName);
+                scraperButtons.add(scraperButton);
+            }
+
+            LinearLayout linearLayout = (LinearLayout)findViewById(R.id.button_layout);
+			LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+
+            for (Button scraperButton : scraperButtons) {
+                linearLayout.addView(scraperButton);
+            }
         }
 	}
 
@@ -72,9 +88,9 @@ public class MainActivity extends Activity {
 
         PebbleSiteScraper scraper;
 
-//        public SetSifter(PebbleSiteScraper pebbleSiteScraper) {
-//            scraper = pebbleSiteScraper;
-//        }
+        public SetSifter(PebbleSiteScraper pebbleSiteScraper) {
+            scraper = pebbleSiteScraper;
+        }
 
         @Override
         protected PebbleSiteScraper doInBackground(PebbleSiteScraper... pebbleScrapers) {
@@ -86,10 +102,10 @@ public class MainActivity extends Activity {
         protected void onPostExecute(PebbleSiteScraper pebbleScraper) {
             scraper = pebbleScraper;
             TextView name = (TextView) findViewById(R.id.sifter_name);
-            name.setText(scraper.getName());
+            name.setText(scraper.getName() + ":");
             TextView siftedText = (TextView) findViewById(R.id.sifted_text);
             siftedText.setText(scraper.scrape());
         }
     }
-    
+
 }
