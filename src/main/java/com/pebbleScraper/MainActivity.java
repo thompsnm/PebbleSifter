@@ -4,12 +4,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.*;
 import android.widget.TextView;
 import android.content.Context;
 
 import com.example.pebblesifter.R;
+import com.pebbleScraper.scrapers.HartmannGameStatusScraper;
 import com.pebbleScraper.scrapers.PebbleSiteScraper;
 import com.pebbleScraper.scrapers.TeamTriviaAnswerScraper;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
@@ -19,8 +25,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SetSifter setSifter = new SetSifter();
+        setSifter.execute();
 		
-		DrawApp drawApp = new DrawApp();
+		DrawApp drawApp = new DrawApp(this);
 		drawApp.execute();
     }
 
@@ -31,24 +40,31 @@ public class MainActivity extends Activity {
         return true;
     }
 	
-	private class DrawApp extends AsyncTask<void, Integer, void> {
+	private class DrawApp extends AsyncTask<Object, Integer, Object> {
 	
-		ArrayList<PebbleScraper> scrapers;
-	
-		@Override
-        protected void doInBackground(void) {
+		ArrayList<PebbleSiteScraper> scrapers = new ArrayList<PebbleSiteScraper>();
+        Context context;
+
+        public DrawApp(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected Object doInBackground(Object... objects) {
             scrapers.add(new TeamTriviaAnswerScraper());
 			scrapers.add(new HartmannGameStatusScraper());
-			
-			Button myButton = new Button(this);
+
+			Button myButton = new Button(context);
 			myButton.setText("Push Me");
 
-			LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
-			LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			ll.addView(myButton, lp);
-			
-			SetSifter setSifter = new SetSifter(scrapers.get(0));
-			setSifter.execute();
+//            RelativeLayout rl = (RelativeLayout)findViewById(R.id.button_layout);
+//			LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//			rl.addView(myButton, lp);
+//
+//			SetSifter setSifter = new SetSifter(scrapers.get(0));
+//			setSifter.execute();
+
+            return null;
         }
 	}
 
@@ -56,9 +72,13 @@ public class MainActivity extends Activity {
 
         PebbleSiteScraper scraper;
 
+//        public SetSifter(PebbleSiteScraper pebbleSiteScraper) {
+//            scraper = pebbleSiteScraper;
+//        }
+
         @Override
-        protected PebbleSiteScraper doInBackground(PebbleSiteScraper... pebbleScraper) {
-            scraper = pebbleScraper;
+        protected PebbleSiteScraper doInBackground(PebbleSiteScraper... pebbleScrapers) {
+            this.scraper = new TeamTriviaAnswerScraper();
             return this.scraper;
         }
 
