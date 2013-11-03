@@ -19,10 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/sifter_name" />
-		
-	<RelativeLayout
-		android:id="@+id/button_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sifted_text"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
 </RelativeLayout>
