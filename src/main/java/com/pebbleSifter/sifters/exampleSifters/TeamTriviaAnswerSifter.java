@@ -1,6 +1,6 @@
-package com.pebbleScraper.scrapers.exampleScrapers;
+package com.pebbleSifter.sifters.exampleSifters;
 
-import com.pebbleScraper.scrapers.PebbleSiteScraper;
+import com.pebbleSifter.sifters.PebbleSifter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class TeamTriviaAnswerScraper extends PebbleSiteScraper {
+public class TeamTriviaAnswerSifter extends PebbleSifter {
 
     private final String URL = "http://www.triviaofcolorado.com/page.asp?subject=5";
     private final String ELEMENT_PATH = "#main .content";
@@ -16,7 +16,7 @@ public class TeamTriviaAnswerScraper extends PebbleSiteScraper {
 
     private Document doc;
 
-    public TeamTriviaAnswerScraper() {
+    public TeamTriviaAnswerSifter() {
         try {
             doc = Jsoup.connect(URL).get();
         } catch (IOException e) {
@@ -25,7 +25,7 @@ public class TeamTriviaAnswerScraper extends PebbleSiteScraper {
     }
 
     @Override
-    public String scrape() {
+    public String sift() {
         Elements content = doc.select(ELEMENT_PATH);
         return content.html().replaceAll("<(.*?)>", "").trim();
     }
