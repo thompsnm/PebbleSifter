@@ -1,13 +1,13 @@
-package com.pebbleScraper.scrapers.exampleScrapers;
+package com.pebbleSifter.sifters.exampleSifters;
 
-import com.pebbleScraper.scrapers.PebbleSiteScraper;
+import com.pebbleSifter.sifters.PebbleSifter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-public class HartmannGameStatusScraper extends PebbleSiteScraper {
+public class HartmannGameStatusSifter extends PebbleSifter {
 
     private final String URL = "http://inlinerink.com/Home";
     private final String ELEMENT_PATH = "#Game_Status p";
@@ -15,7 +15,7 @@ public class HartmannGameStatusScraper extends PebbleSiteScraper {
 
     private Document doc;
 
-    public HartmannGameStatusScraper() {
+    public HartmannGameStatusSifter() {
         try {
             doc = Jsoup.connect(URL).get();
         } catch (IOException e) {
@@ -23,7 +23,7 @@ public class HartmannGameStatusScraper extends PebbleSiteScraper {
         }
     }
 
-    public String scrape() {
+    public String sift() {
         return doc.select(ELEMENT_PATH).text();
     }
 

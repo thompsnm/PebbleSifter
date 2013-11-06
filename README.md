@@ -1,4 +1,4 @@
-Pebble Scrapper
+Pebble Sifter
 =========
 
-Pebble app to interface with JSoup site scrapers.
+Pebble / Android app to interface with site scrapers in order to sift out important strings.
