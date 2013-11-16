@@ -1,4 +1,4 @@
-package com.pebbleSifter.asyncTasks;
+package com.androidSifter.asyncTasks;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.pebblesifter.R;
-import com.pebbleSifter.sifters.PebbleSifter;
-import com.pebbleSifter.sifters.exampleSifters.HartmannGameStatusSifter;
-import com.pebbleSifter.sifters.exampleSifters.TeamTriviaAnswerSifter;
+import com.androidSifter.sifters.PebbleSifter;
+import com.androidSifter.sifters.exampleSifters.HartmannGameStatusSifter;
+import com.androidSifter.sifters.exampleSifters.TeamTriviaAnswerSifter;
 
 import java.util.ArrayList;
 

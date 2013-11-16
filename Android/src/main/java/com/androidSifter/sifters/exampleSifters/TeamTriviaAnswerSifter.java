@@ -1,6 +1,6 @@
-package com.pebbleSifter.sifters.exampleSifters;
+package com.androidSifter.sifters.exampleSifters;
 
-import com.pebbleSifter.sifters.PebbleSifter;
+import com.androidSifter.sifters.PebbleSifter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

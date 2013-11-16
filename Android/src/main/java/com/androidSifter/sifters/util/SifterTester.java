@@ -1,7 +1,7 @@
-package com.pebbleSifter.sifters.util;
+package com.androidSifter.sifters.util;
 
-import com.pebbleSifter.sifters.PebbleSifter;
-import com.pebbleSifter.sifters.exampleSifters.TeamTriviaAnswerSifter;
+import com.androidSifter.sifters.PebbleSifter;
+import com.androidSifter.sifters.exampleSifters.TeamTriviaAnswerSifter;
 
 public class SifterTester {
     public static void main(String [] args)

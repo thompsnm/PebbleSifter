@@ -1,11 +1,11 @@
-package com.pebbleSifter.asyncTasks;
+package com.androidSifter.asyncTasks;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
 import com.example.pebblesifter.R;
-import com.pebbleSifter.sifters.PebbleSifter;
+import com.androidSifter.sifters.PebbleSifter;
 
 public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
 

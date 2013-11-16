@@ -1,11 +1,11 @@
-package com.pebbleSifter;
+package com.androidSifter;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
 import com.example.pebblesifter.R;
-import com.pebbleSifter.asyncTasks.DrawApp;
+import com.androidSifter.asyncTasks.DrawApp;
 
 public class MainActivity extends Activity {
 
