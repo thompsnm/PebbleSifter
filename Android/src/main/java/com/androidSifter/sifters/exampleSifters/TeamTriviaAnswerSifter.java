@@ -17,6 +17,11 @@ public class TeamTriviaAnswerSifter extends PebbleSifter {
     private Document doc;
 
     public TeamTriviaAnswerSifter() {
+
+    }
+
+    @Override
+    public void connect() {
         try {
             doc = Jsoup.connect(URL).get();
         } catch (IOException e) {
@@ -31,7 +36,7 @@ public class TeamTriviaAnswerSifter extends PebbleSifter {
     }
 
     @Override
-    public String getName() {
+    public String getFullName() {
         return SIFTER_NAME;
     }
 }

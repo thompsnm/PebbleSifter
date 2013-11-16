@@ -32,7 +32,7 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
         ArrayList<String> sifterNames = new ArrayList<String>();
 
         for (PebbleSifter sifter : sifters) {
-            sifterNames.add(sifter.getName());
+            sifterNames.add(sifter.getFullName());
         }
 
         return sifterNames;

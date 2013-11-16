@@ -19,6 +19,7 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
     @Override
     protected PebbleSifter doInBackground(PebbleSifter... pebbleSifters) {
         this.sifter = pebbleSifters[0];
+        this.sifter.connect();
         return this.sifter;
     }
 
@@ -26,7 +27,7 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
     protected void onPostExecute(PebbleSifter pebbleSifter) {
         sifter = pebbleSifter;
         TextView name = (TextView) activity.findViewById(R.id.sifter_name);
-        name.setText(sifter.getName() + ":");
+        name.setText(sifter.getFullName() + ":");
         TextView siftedText = (TextView) activity.findViewById(R.id.sifted_text);
         siftedText.setText(sifter.sift());
     }
