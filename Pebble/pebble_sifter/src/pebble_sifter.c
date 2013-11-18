@@ -10,11 +10,10 @@ PBL_APP_INFO(MY_UUID,
              DEFAULT_MENU_ICON,
              APP_INFO_STANDARD_APP);
 
-Window window;
-TextLayer sifter_name_layer;
-TextLayer sifter_text_layer;
-
 static struct PebbleSifterData {
+  Window window;
+  TextLayer sifter_name_layer;
+  TextLayer sifter_text_layer;
   AppSync sync;
   uint8_t sync_buffer[32];
 } s_data;
@@ -44,15 +43,15 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 
 void handle_init(AppContextRef ctx) {
 
-  window_init(&window, "Pebble Sifter");
-  window_stack_push(&window, true /* Animated */);
-  text_layer_init(&sifter_name_layer, GRect(0, 0, 144, 20));
-  text_layer_set_text_alignment(&sifter_name_layer, GTextAlignmentCenter);
-  text_layer_set_text(&sifter_name_layer, "Sifter Name");
-  layer_add_child(&window.layer, &sifter_name_layer.layer);
-  text_layer_init(&sifter_text_layer, GRect(0, 20, 144, 168));
-  text_layer_set_text(&sifter_text_layer, "Sifted Text");
-  layer_add_child(&window.layer, &sifter_text_layer.layer);
+  Window* window = &s_data.window;
+  window_init(window, "Pebble Sifter");
+  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, 20));
+  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
+  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
+  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
+  text_layer_init(&s_data.sifter_text_layer, GRect(0, 20, 144, 168));
+  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
+  layer_add_child(&window->layer, &s_data.sifter_text_layer.layer);
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_NAME_KEY, "Sifter Name"),
