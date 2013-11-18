@@ -1,4 +1,7 @@
 
+# Files in flux
+*.*~
+
 # Ignore .hgignore file
 .hgignore
 
