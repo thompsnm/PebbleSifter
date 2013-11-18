@@ -45,6 +45,7 @@ void handle_init(AppContextRef ctx) {
 
   Window* window = &s_data.window;
   window_init(window, "Pebble Sifter");
+  window_stack_push(window, false);
   text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, 20));
   text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
   text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
