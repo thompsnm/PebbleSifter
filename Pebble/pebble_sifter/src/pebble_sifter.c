@@ -31,11 +31,10 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 
   switch (key) {
   case SIFTER_NAME_KEY:
-//    text_layer_set_text(&sifter_name_layer, new_tuple->value->cstring);
-//    text_layer_set_text(&sifter_name_layer, "Updated");
+    text_layer_set_text(&s_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
-//    text_layer_set_text(&sifter_text_layer, new_tuple->value->cstring);
+    text_layer_set_text(&s_data.sifter_text_layer, new_tuple->value->cstring);
     break;
   default:
     return;
