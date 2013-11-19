@@ -29,16 +29,17 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
 
-//  switch (key) {
-//  case SIFTER_NAME_KEY:
+  switch (key) {
+  case SIFTER_NAME_KEY:
 //    text_layer_set_text(&sifter_name_layer, new_tuple->value->cstring);
-//    break;
-//  case SIFTER_TEXT_KEY:
+//    text_layer_set_text(&sifter_name_layer, "Updated");
+    break;
+  case SIFTER_TEXT_KEY:
 //    text_layer_set_text(&sifter_text_layer, new_tuple->value->cstring);
-//    break;
-//  default:
-//    return;
-//  }
+    break;
+  default:
+    return;
+  }
 }
 
 void handle_init(AppContextRef ctx) {
