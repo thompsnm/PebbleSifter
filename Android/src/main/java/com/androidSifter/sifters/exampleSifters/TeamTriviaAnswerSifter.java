@@ -12,7 +12,8 @@ public class TeamTriviaAnswerSifter extends PebbleSifter {
 
     private final String URL = "http://www.triviaofcolorado.com/page.asp?subject=5";
     private final String ELEMENT_PATH = "#main .content";
-    private final String SIFTER_NAME = "Team Trivia Free Answer";
+    private final String SIFTER_FULL_NAME = "Team Trivia Free Answer";
+    private final String SIFTER_PEBBLE_NAME = "Team Trivia";
 
     private Document doc;
 
@@ -37,6 +38,11 @@ public class TeamTriviaAnswerSifter extends PebbleSifter {
 
     @Override
     public String getFullName() {
-        return SIFTER_NAME;
+        return SIFTER_FULL_NAME;
+    }
+
+    @Override
+    public String getPebbleName() {
+        return SIFTER_PEBBLE_NAME;
     }
 }
