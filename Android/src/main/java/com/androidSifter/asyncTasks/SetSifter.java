@@ -37,25 +37,26 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
     protected void onPostExecute(PebbleSifter pebbleSifter) {
         // Set sifter and sift text
         sifter = pebbleSifter;
-        String text = sifter.sift();
+        String siftedTextString;
+
+        // Prevent app from crashing if sifter.sift() throws an exception
+        try {
+            siftedTextString = sifter.sift();
+        } catch (Exception e) {
+            siftedTextString = "ERROR: Exception occurred while sifting text.";
+            Log.e("Sift", e.toString());
+        }
 
         // Update Android views
         TextView name = (TextView) activity.findViewById(R.id.sifter_name);
         name.setText(sifter.getFullName() + ":");
         TextView siftedText = (TextView) activity.findViewById(R.id.sifted_text);
-
-        // Prevent app from crashing if sifter.sift() throws an exception
-        try {
-            siftedText.setText(sifter.sift());
-        } catch (Exception e) {
-            siftedText.setText("ERROR: Exception occurred while sifting text.");
-            Log.e("Sift", e.toString());
-        }
+        siftedText.setText(siftedTextString);
 
         // Send text to Pebble app
         PebbleDictionary dictionary = new PebbleDictionary();
         dictionary.addString(SIFTER_NAME, sifter.getPebbleName());
-        dictionary.addString(SIFTER_TEXT, text);
+        dictionary.addString(SIFTER_TEXT, siftedTextString);
         PebbleKit.sendDataToPebble(activity, PEBBLE_SIFTER_UUID, dictionary);
     }
 }
