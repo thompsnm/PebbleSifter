@@ -15,7 +15,7 @@ static struct PebbleSifterData {
   TextLayer sifter_name_layer;
   TextLayer sifter_text_layer;
   AppSync sync;
-  uint8_t sync_buffer[32];
+  uint8_t sync_buffer[128];
 } s_data;
 
 enum {
@@ -62,14 +62,19 @@ void handle_init(AppContextRef ctx) {
   app_sync_init(&s_data.sync, s_data.sync_buffer, sizeof(s_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
 }
 
+static void handle_deinit(AppContextRef c) {
+  app_sync_deinit(&s_data.sync);
+}
+
 
 void pbl_main(void *params) {
   PebbleAppHandlers handlers = {
     .init_handler = &handle_init,
+    .deinit_handler = &handle_deinit,
     .messaging_info = {
       .buffer_sizes = {
-        .inbound = 256,
-        .outbound = 256,
+        .inbound = 1024,
+        .outbound = 1024,
       }
     }
   };
