@@ -33,11 +33,13 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
+  const GRect max_text_bounds = GRect(0, 0, 144, 2000);
   switch (key) {
   case SIFTER_NAME_KEY:
     text_layer_set_text(&s_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
+    scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
     text_layer_set_text(&s_data.sifter_text_layer, new_tuple->value->cstring);
     GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
     text_layer_set_size(&s_data.sifter_text_layer, max_size);
@@ -77,7 +79,7 @@ void handle_init(AppContextRef ctx) {
   text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
 
   // Trim text layer and scroll content to fit text box
-  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer + sifter_name_layer_vert_size);
+  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
   text_layer_set_size(&s_data.sifter_text_layer, max_size);
   scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
 
