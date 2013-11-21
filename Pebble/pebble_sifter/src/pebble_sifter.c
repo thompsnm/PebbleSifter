@@ -55,7 +55,7 @@ void handle_init(AppContextRef ctx) {
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_NAME_KEY, "Sifter Name"),
-    TupletCString(SIFTER_TEXT_KEY, "Sifted Text"),
+    TupletCString(SIFTER_TEXT_KEY, "Sifted Text asdfas asdf asd fasd f ljk qwelrjk ljk qwerkj hkjashdklfjhkl asd fjkasjd fhjh k jakjshdkfjhiuhasiuhdfkj kasj dfj haksdf askjhd asjdfh jhakjs dfjh asjdhfkj askjdh faksjdf asjkdfh asjd f asjdhfkjash dfjkh kjahskd jfkajshd faskjd hfasjdh fkj sjdhf kasjdhf asdkfjh asdklfj haskljdfh  askjhdf aksjhdfkja shdkfhaskjdfhaksj dfaskjdfhask dfaksjhdfkasjhd faskfhd askjd faksj hdfk lkjlk"),
   };
 
   // Initialize the window
@@ -76,7 +76,7 @@ void handle_init(AppContextRef ctx) {
 
   // Initialize the sifter text layer
   text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
-  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
+  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text asdfas asdf asd fasd f ljk qwelrjk ljk qwerkj hkjashdklfjhkl asd fjkasjd fhjh k jakjshdkfjhiuhasiuhdfkj kasj dfj haksdf askjhd asjdfh jhakjs dfjh asjdhfkj askjdh faksjdf asjkdfh asjd f asjdhfkjash dfjkh kjahskd jfkajshd faskjd hfasjdh fkj sjdhf kasjdhf asdkfjh asdklfj haskljdfh  askjhdf aksjhdfkja shdkfhaskjdfhaksj dfaskjdfhask dfaksjhdfkasjhd faskfhd askjd faksj hdfk lkjlk");
 
   // Trim text layer and scroll content to fit text box
   GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
