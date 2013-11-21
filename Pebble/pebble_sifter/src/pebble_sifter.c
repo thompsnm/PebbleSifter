@@ -12,6 +12,7 @@ PBL_APP_INFO(MY_UUID,
 
 static struct PebbleSifterData {
   Window window;
+  ScrollLayer sifter_text_scroll_layer;
   TextLayer sifter_name_layer;
   TextLayer sifter_text_layer;
   AppSync sync;
@@ -28,7 +29,6 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
-
   switch (key) {
   case SIFTER_NAME_KEY:
     text_layer_set_text(&s_data.sifter_name_layer, new_tuple->value->cstring);
@@ -42,22 +42,43 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 }
 
 void handle_init(AppContextRef ctx) {
-
-  Window* window = &s_data.window;
-  window_init(window, "Pebble Sifter");
-  window_stack_push(window, false);
-  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, 20));
-  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
-  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
-  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
-  text_layer_init(&s_data.sifter_text_layer, GRect(0, 20, 144, 168));
-  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
-  layer_add_child(&window->layer, &s_data.sifter_text_layer.layer);
+  const int vert_scroll_text_padding = 4;
+  const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_NAME_KEY, "Sifter Name"),
     TupletCString(SIFTER_TEXT_KEY, "Sifted Text"),
   };
+
+  // Initialize the window
+  Window* window = &s_data.window;
+  window_init(window, "Pebble Sifter");
+  window_stack_push(window, true /* Animated */ );
+
+  // Initialize the sifter name layer and add it to the window
+  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, 20));
+  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
+  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
+  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
+
+  // Initialize the scroll layer
+  scroll_layer_init(&s_data.scroll_layer, window->layer.bounds);
+  scroll_layer_set_click_config_onto_window(&s_data.scroll_layer, window);
+  scroll_layer_set_content_size(&s_data.scroll_layer, max_text_bounds.size);
+
+  // Initialize the sifter text layer
+  text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
+  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
+
+  // Trim text layer and scroll content to fit text box
+  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &text_layer);
+  text_layer_set_size(&text_layer, max_size);
+  scroll_layer_set_content_size(&scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
+
+  // Add the sifter text layer and scroll layer to the window
+  scroll_layer_add_child(&s_data.sifter_text_scroll_layer, &s_data.sifter_text_layer.layer);
+  layer_add_child(&window->layer, &s_data.sifter_text_scroll_layer.layer);
+
   app_sync_init(&s_data.sync, s_data.sync_buffer, sizeof(s_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
 }
 
