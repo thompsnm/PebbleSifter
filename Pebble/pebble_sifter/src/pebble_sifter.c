@@ -60,19 +60,19 @@ void handle_init(AppContextRef ctx) {
   window_stack_push(window, true /* Animated */ );
 
   // Initialize the sifter name layer and add it to the window
-  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, 20));
-  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
-  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
-  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
+//  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, 20));
+//  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
+//  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
+//  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
-  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, 20, 144, 168));
+  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, 0, 144, 168));
   scroll_layer_set_click_config_onto_window(&s_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
 
   // Initialize the sifter text layer
   text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
-  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
+  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Textasd lkfjalskj dflaskjdflk jaslfjdlka sjdflkjaslk dfjlkasjdlf kjalskfjdla ksjdflkasjd lfjkaslkfjdl aksjdflkajs lkdjflkasjdf lkjaslkdfjl kasjdfkjaslk djfkasjdflkja slkfjdlkasjd lkfjalskjdflk ajsdlkfjlaksjd fkjaslkjdflkja sdlkfjlaksjd fkjaslkjdflk asjdlkfjaslkj dflaksjdfl kajsdlkfjas lkfjdlkasjdf lkasjdlfkjas lkjdflkasjdf jkasldkfjal skjdflkja sdlkfjlask jdflaksjdfl kjasldfjla skjdflkas jdflkasj dlfkjasl; fjalskfjd alskfjdlak sdfiuay sidufhkajsh dkfhaskj dhfjkhasdfh kajshdkf jashkjd");
 
   // Trim text layer and scroll content to fit text box
   GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
