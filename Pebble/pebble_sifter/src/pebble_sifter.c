@@ -47,7 +47,7 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 }
 
 void handle_init(AppContextRef ctx) {
-  const GRect max_text_bounds = GRect(0, 0, 144, 2000);
+  const GRect max_text_bounds = GRect(0, 20, 144, 2000);
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_NAME_KEY, "Sifter Name"),
