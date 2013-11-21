@@ -17,6 +17,8 @@ Discarded input sections
  .jcr           0x00000000        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
  .text          0x00000000        0x0 src/pebble_sifter.c.1.o
  .bss           0x00000000        0x0 src/pebble_sifter.c.1.o
+ .rodata.sifter_name_layer_vert_size
+                0x00000000        0x4 src/pebble_sifter.c.1.o
  .rodata.vert_scroll_text_padding
                 0x00000000        0x4 src/pebble_sifter.c.1.o
  .bss           0x00000000        0x0 /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
@@ -463,9 +465,9 @@ LOAD /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2
 .rodata         0x0000007c       0x10
  .rodata        0x0000007c       0x10 src/pebble_sifter.c.1.o
 
-.rodata.max_text_bounds.6355
+.rodata.max_text_bounds.6356
                 0x0000008c        0x8
- .rodata.max_text_bounds.6355
+ .rodata.max_text_bounds.6356
                 0x0000008c        0x8 src/pebble_sifter.c.1.o
 
 .rodata.str1.1  0x00000094       0x26
@@ -672,10 +674,10 @@ OUTPUT(/home/tom/projects/PebbleSifter/Pebble/pebble_sifter/build/pebble-app.elf
  .debug_line    0x00000071      0x1f7 src/pebble_sifter.c.1.o
  .debug_line    0x00000268       0x75 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.debug_info     0x00000000     0x1a7e
+.debug_info     0x00000000     0x1a90
  .debug_info    0x00000000       0x93 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .debug_info    0x00000093     0x1958 src/pebble_sifter.c.1.o
- .debug_info    0x000019eb       0x93 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .debug_info    0x00000093     0x196a src/pebble_sifter.c.1.o
+ .debug_info    0x000019fd       0x93 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
 .debug_abbrev   0x00000000      0x285
  .debug_abbrev  0x00000000       0x12 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
@@ -698,9 +700,9 @@ OUTPUT(/home/tom/projects/PebbleSifter/Pebble/pebble_sifter/build/pebble-app.elf
 .debug_loc      0x00000000      0x15c
  .debug_loc     0x00000000      0x15c src/pebble_sifter.c.1.o
 
-.debug_str      0x00000000     0x100a
- .debug_str     0x00000000     0x100a src/pebble_sifter.c.1.o
-                               0x112d (size before relaxing)
+.debug_str      0x00000000     0x1026
+ .debug_str     0x00000000     0x1026 src/pebble_sifter.c.1.o
+                               0x1149 (size before relaxing)
 
 .debug_frame    0x00000000       0x8c
  .debug_frame   0x00000000       0x8c src/pebble_sifter.c.1.o
