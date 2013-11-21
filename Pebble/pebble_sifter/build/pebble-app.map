@@ -667,10 +667,10 @@ OUTPUT(/home/tom/projects/PebbleSifter/Pebble/pebble_sifter/build/pebble-app.elf
  .comment       0x00000000       0x4f src/pebble_sifter.c.1.o
  .comment       0x00000000       0x4f /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
 
-.debug_line     0x00000000      0x2dc
+.debug_line     0x00000000      0x2dd
  .debug_line    0x00000000       0x71 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .debug_line    0x00000071      0x1f6 src/pebble_sifter.c.1.o
- .debug_line    0x00000267       0x75 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .debug_line    0x00000071      0x1f7 src/pebble_sifter.c.1.o
+ .debug_line    0x00000268       0x75 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
 .debug_info     0x00000000     0x1a7e
  .debug_info    0x00000000       0x93 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
@@ -702,5 +702,5 @@ OUTPUT(/home/tom/projects/PebbleSifter/Pebble/pebble_sifter/build/pebble-app.elf
  .debug_str     0x00000000     0x100a src/pebble_sifter.c.1.o
                                0x112d (size before relaxing)
 
-.debug_frame    0x00000000       0x90
- .debug_frame   0x00000000       0x90 src/pebble_sifter.c.1.o
+.debug_frame    0x00000000       0x8c
+ .debug_frame   0x00000000       0x8c src/pebble_sifter.c.1.o
