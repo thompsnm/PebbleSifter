@@ -62,7 +62,7 @@ void handle_init(AppContextRef ctx) {
   layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
-  scroll_layer_init(&s_data.sifter_text_scroll_layer, window->layer.bounds);
+  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, 20, 144, 168));
   scroll_layer_set_click_config_onto_window(&s_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
 
