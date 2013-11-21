@@ -72,7 +72,7 @@ void handle_init(AppContextRef ctx) {
 
   // Initialize the sifter text layer
   text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
-  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
+  text_layer_set_text(&s_data.sifter_text_layer, "asd lkfjalskj dflaskjdflk jaslfjdlka sjdflkjaslk dfjlkasjdlf kjalskfjdla ksjdflkasjd lfjkaslkfjdl aksjdflkajs lkdjflkasjdf lkjaslkdfjl kasjdfkjaslk djfkasjdflkja slkfjdlkasjd lkfjalskjdflk ajsdlkfjlaksjd fkjaslkjdflkja sdlkfjlaksjd fkjaslkjdflk asjdlkfjaslkj dflaksjdfl kajsdlkfjas lkfjdlkasjdf lkasjdlfkjas lkjdflkasjdf jkasldkfjal skjdflkja sdlkfjlask jdflaksjdfl kjasldfjla skjdflkas jdflkasj dlfkjasl; fjalskfjd alskfjdlak sdfiuay sidufhkajsh dkfhaskj dhfjkhasdfh kajshdkf jashkjd");
 
   // Trim text layer and scroll content to fit text box
   GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
