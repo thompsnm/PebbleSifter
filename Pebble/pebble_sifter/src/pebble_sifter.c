@@ -10,6 +10,8 @@ PBL_APP_INFO(MY_UUID,
              DEFAULT_MENU_ICON,
              APP_INFO_STANDARD_APP);
 
+const int vert_scroll_text_padding = 4;
+
 static struct PebbleSifterData {
   Window window;
   ScrollLayer sifter_text_scroll_layer;
@@ -35,6 +37,9 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
     break;
   case SIFTER_TEXT_KEY:
     text_layer_set_text(&s_data.sifter_text_layer, new_tuple->value->cstring);
+    GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
+    text_layer_set_size(&s_data.sifter_text_layer, max_size);
+    scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
     break;
   default:
     return;
@@ -42,7 +47,6 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 }
 
 void handle_init(AppContextRef ctx) {
-  const int vert_scroll_text_padding = 4;
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
   Tuplet initial_values[] = {
@@ -71,9 +75,9 @@ void handle_init(AppContextRef ctx) {
   text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
 
   // Trim text layer and scroll content to fit text box
-//  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
-//  text_layer_set_size(&s_data.sifter_text_layer, max_size);
-  scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_text_bounds.size.h + vert_scroll_text_padding));
+  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
+  text_layer_set_size(&s_data.sifter_text_layer, max_size);
+  scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
 
   // Add the sifter text layer and scroll layer to the window
   scroll_layer_add_child(&s_data.sifter_text_scroll_layer, &s_data.sifter_text_layer.layer);
