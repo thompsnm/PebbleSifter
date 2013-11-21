@@ -62,18 +62,18 @@ void handle_init(AppContextRef ctx) {
   layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
-  scroll_layer_init(&s_data.scroll_layer, window->layer.bounds);
-  scroll_layer_set_click_config_onto_window(&s_data.scroll_layer, window);
-  scroll_layer_set_content_size(&s_data.scroll_layer, max_text_bounds.size);
+  scroll_layer_init(&s_data.sifter_text_scroll_layer, window->layer.bounds);
+  scroll_layer_set_click_config_onto_window(&s_data.sifter_text_scroll_layer, window);
+  scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
 
   // Initialize the sifter text layer
   text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
   text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
 
   // Trim text layer and scroll content to fit text box
-  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &text_layer);
-  text_layer_set_size(&text_layer, max_size);
-  scroll_layer_set_content_size(&scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
+  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
+  text_layer_set_size(&s_data.sifter_text_layer, max_size);
+  scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
 
   // Add the sifter text layer and scroll layer to the window
   scroll_layer_add_child(&s_data.sifter_text_scroll_layer, &s_data.sifter_text_layer.layer);
