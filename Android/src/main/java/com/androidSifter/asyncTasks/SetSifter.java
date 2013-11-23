@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.androidSifter.Constants;
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
@@ -14,10 +15,6 @@ import com.example.pebblesifter.R;
 import com.androidSifter.sifters.PebbleSifter;
 
 public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
-
-    private static final UUID PEBBLE_SIFTER_UUID = UUID.fromString("ACA3B3D0-BF4A-4777-9238-FF95F07AA221");
-    private static final int SIFTER_NAME = 0;
-    private static final int SIFTER_TEXT = 1;
 
     Activity activity;
     PebbleSifter sifter;
@@ -54,8 +51,8 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
 
         // Send text to Pebble app
         PebbleDictionary dictionary = new PebbleDictionary();
-        dictionary.addString(SIFTER_NAME, sifter.getPebbleName());
-        dictionary.addString(SIFTER_TEXT, siftedTextString);
-        PebbleKit.sendDataToPebble(activity, PEBBLE_SIFTER_UUID, dictionary);
+        dictionary.addString(Constants.SIFTER_NAME, sifter.getPebbleName());
+        dictionary.addString(Constants.SIFTER_TEXT, siftedTextString);
+        PebbleKit.sendDataToPebble(activity, Constants.PEBBLE_SIFTER_UUID, dictionary);
     }
 }

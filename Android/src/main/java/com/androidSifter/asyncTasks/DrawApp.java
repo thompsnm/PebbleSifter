@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.androidSifter.MainActivity;
 import com.example.pebblesifter.R;
 import com.androidSifter.sifters.PebbleSifter;
 import com.androidSifter.sifters.exampleSifters.HartmannGameStatusSifter;
@@ -40,8 +41,6 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
 
     @Override
     protected void onPostExecute(ArrayList<String> sifterNames) {
-        ArrayList<Button> sifterButtons = new ArrayList<Button>();
-
         SetSifter setSifter = new SetSifter(activity);
         setSifter.execute(sifters.get(0));
 
@@ -60,14 +59,14 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
             };
 
             sifterButton.setOnClickListener(listener);
-            sifterButtons.add(sifterButton);
+            MainActivity.sifterButtons.add(sifterButton);
         }
 
         LinearLayout linearLayout = (LinearLayout)activity.findViewById(R.id.button_layout);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
-        for (Button sifterButton : sifterButtons) {
+        for (Button sifterButton : MainActivity.sifterButtons) {
             linearLayout.addView(sifterButton);
         }
     }
