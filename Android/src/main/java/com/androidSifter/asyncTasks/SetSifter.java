@@ -29,7 +29,6 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
     @Override
     protected PebbleSifter doInBackground(PebbleSifter... pebbleSifters) {
         this.sifter = pebbleSifters[0];
-        this.sifter.connect();
         return this.sifter;
     }
 

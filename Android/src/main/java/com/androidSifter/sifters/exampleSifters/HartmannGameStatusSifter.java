@@ -17,16 +17,7 @@ public class HartmannGameStatusSifter extends PebbleSifter {
     private Document doc;
 
     public HartmannGameStatusSifter() {
-
-    }
-
-    @Override
-    public void connect() {
-        try {
-            doc = Jsoup.connect(URL).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        connect();
     }
 
     @Override
@@ -42,5 +33,19 @@ public class HartmannGameStatusSifter extends PebbleSifter {
     @Override
     public String getPebbleName() {
         return SIFTER_PEBBLE_NAME;
+    }
+
+    @Override
+    public void refresh() {
+        connect();
+    }
+
+    private void connect() {
+        try {
+            doc = Jsoup.connect(URL).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+            doc = null;
+        }
     }
 }
