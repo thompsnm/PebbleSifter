@@ -474,170 +474,170 @@ LOAD /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2
  .rodata.max_text_bounds.6358
                 0x00000084        0x8 src/pebble_sifter.c.1.o
 
-.rodata.str1.1  0x0000008c      0x190
+.rodata.str1.1  0x0000008c      0x124
  .rodata.str1.1
-                0x0000008c      0x190 src/pebble_sifter.c.1.o
+                0x0000008c      0x124 src/pebble_sifter.c.1.o
 
-.text           0x0000021c       0x14
+.text           0x000001b0       0x14
  *(.text)
- .text          0x0000021c       0x14 /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+ .text          0x000001b0       0x14 /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
 
-.glue_7         0x00000230        0x0
+.glue_7         0x000001c4        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00000230        0x0
+.glue_7t        0x000001c4        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00000230        0x0
+.vfp11_veneer   0x000001c4        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00000230        0x0
+.v4_bx          0x000001c4        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00000230        0x0
+.iplt           0x000001c4        0x0
  .iplt          0x00000000        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
 .text.sync_error_callback
-                0x00000230        0x2
+                0x000001c4        0x2
  .text.sync_error_callback
-                0x00000230        0x2 src/pebble_sifter.c.1.o
+                0x000001c4        0x2 src/pebble_sifter.c.1.o
 
 .text.handle_deinit
-                0x00000234       0x10
+                0x000001c8       0x10
  .text.handle_deinit
-                0x00000234       0x10 src/pebble_sifter.c.1.o
+                0x000001c8       0x10 src/pebble_sifter.c.1.o
 
 .text.sync_tuple_changed_callback
-                0x00000244       0x88
+                0x000001d8       0x88
  .text.sync_tuple_changed_callback
-                0x00000244       0x88 src/pebble_sifter.c.1.o
+                0x000001d8       0x88 src/pebble_sifter.c.1.o
 
 .text.handle_init
-                0x000002cc      0x11c
+                0x00000260      0x11c
  .text.handle_init
-                0x000002cc      0x11c src/pebble_sifter.c.1.o
-                0x000002cc                handle_init
+                0x00000260      0x11c src/pebble_sifter.c.1.o
+                0x00000260                handle_init
 
-.text.pbl_main  0x000003e8       0x3c
+.text.pbl_main  0x0000037c       0x3c
  .text.pbl_main
-                0x000003e8       0x3c src/pebble_sifter.c.1.o
-                0x000003e8                pbl_main
+                0x0000037c       0x3c src/pebble_sifter.c.1.o
+                0x0000037c                pbl_main
 
 .text.app_event_loop
-                0x00000424        0xc
+                0x000003b8        0xc
  .text.app_event_loop
-                0x00000424        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000424                app_event_loop
+                0x000003b8        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000003b8                app_event_loop
 
 .text.layer_add_child
-                0x00000430        0xc
+                0x000003c4        0xc
  .text.layer_add_child
-                0x00000430        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000430                layer_add_child
+                0x000003c4        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000003c4                layer_add_child
 
 .text.window_init
-                0x0000043c        0xc
+                0x000003d0        0xc
  .text.window_init
-                0x0000043c        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x0000043c                window_init
+                0x000003d0        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000003d0                window_init
 
 .text.window_stack_push
-                0x00000448        0xc
+                0x000003dc        0xc
  .text.window_stack_push
-                0x00000448        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000448                window_stack_push
+                0x000003dc        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000003dc                window_stack_push
 
 .text.text_layer_init
-                0x00000454        0xc
+                0x000003e8        0xc
  .text.text_layer_init
-                0x00000454        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000454                text_layer_init
+                0x000003e8        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000003e8                text_layer_init
 
 .text.text_layer_set_text
-                0x00000460        0xc
+                0x000003f4        0xc
  .text.text_layer_set_text
-                0x00000460        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000460                text_layer_set_text
+                0x000003f4        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000003f4                text_layer_set_text
 
 .text.app_get_current_graphics_context
-                0x0000046c        0xc
+                0x00000400        0xc
  .text.app_get_current_graphics_context
-                0x0000046c        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x0000046c                app_get_current_graphics_context
+                0x00000400        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000400                app_get_current_graphics_context
 
 .text.text_layer_get_max_used_size
-                0x00000478        0xc
+                0x0000040c        0xc
  .text.text_layer_get_max_used_size
-                0x00000478        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000478                text_layer_get_max_used_size
+                0x0000040c        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000040c                text_layer_get_max_used_size
 
 .text.text_layer_set_size
-                0x00000484        0xc
+                0x00000418        0xc
  .text.text_layer_set_size
-                0x00000484        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000484                text_layer_set_size
+                0x00000418        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000418                text_layer_set_size
 
 .text.scroll_layer_init
-                0x00000490        0xc
+                0x00000424        0xc
  .text.scroll_layer_init
-                0x00000490        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000490                scroll_layer_init
+                0x00000424        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000424                scroll_layer_init
 
 .text.scroll_layer_add_child
-                0x0000049c        0xc
+                0x00000430        0xc
  .text.scroll_layer_add_child
-                0x0000049c        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x0000049c                scroll_layer_add_child
+                0x00000430        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000430                scroll_layer_add_child
 
 .text.scroll_layer_set_click_config_onto_window
-                0x000004a8        0xc
+                0x0000043c        0xc
  .text.scroll_layer_set_click_config_onto_window
-                0x000004a8        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x000004a8                scroll_layer_set_click_config_onto_window
+                0x0000043c        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000043c                scroll_layer_set_click_config_onto_window
 
 .text.scroll_layer_set_content_size
-                0x000004b4        0xc
+                0x00000448        0xc
  .text.scroll_layer_set_content_size
-                0x000004b4        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x000004b4                scroll_layer_set_content_size
+                0x00000448        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000448                scroll_layer_set_content_size
 
 .text.app_sync_init
-                0x000004c0        0xc
+                0x00000454        0xc
  .text.app_sync_init
-                0x000004c0        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x000004c0                app_sync_init
+                0x00000454        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000454                app_sync_init
 
 .text.app_sync_deinit
-                0x000004cc        0xc
+                0x00000460        0xc
  .text.app_sync_deinit
-                0x000004cc        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x000004cc                app_sync_deinit
+                0x00000460        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000460                app_sync_deinit
 
-.text.memset    0x000004d8        0xc
- .text.memset   0x000004d8        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x000004d8                memset
+.text.memset    0x0000046c        0xc
+ .text.memset   0x0000046c        0xc /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000046c                memset
 
-.rel.dyn        0x000004e4        0x0
+.rel.dyn        0x00000478        0x0
  .rel.iplt      0x00000000        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
-.data           0x000004e4        0x4
+.data           0x00000478        0x4
  *(.data)
- .data          0x000004e4        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .data          0x000004e4        0x4 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
-                0x000004e4                __dso_handle
- .data          0x000004e8        0x0 src/pebble_sifter.c.1.o
- .data          0x000004e8        0x0 /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .data          0x000004e8        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
- .data          0x000004e8        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .data          0x00000478        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+ .data          0x00000478        0x4 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+                0x00000478                __dso_handle
+ .data          0x0000047c        0x0 src/pebble_sifter.c.1.o
+ .data          0x0000047c        0x0 /home/tom/projects/PebbleSifter/Pebble/pebble_sifter/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+ .data          0x0000047c        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ .data          0x0000047c        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.igot.plt       0x000004e8        0x0
+.igot.plt       0x0000047c        0x0
  .igot.plt      0x00000000        0x0 /home/tom/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
 .bss
  *(.bss)
 
-.bss.s_data     0x000004e8      0x244
- .bss.s_data    0x000004e8      0x244 src/pebble_sifter.c.1.o
+.bss.s_data     0x0000047c      0x244
+ .bss.s_data    0x0000047c      0x244 src/pebble_sifter.c.1.o
 
 DISCARD
  libc.a(*)
