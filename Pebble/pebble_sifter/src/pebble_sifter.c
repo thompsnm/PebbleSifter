@@ -64,13 +64,14 @@ void handle_init(AppContextRef ctx) {
   window_stack_push(window, true /* Animated */ );
 
   // Initialize the sifter name layer and add it to the window
-  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));
-  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
-  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
-  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
+//  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));
+//  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
+//  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
+//  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
-  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, 128));
+  scroll_layer_init(&s_data.sifter_text_scroll_layer, window->layer.bounds);
+//  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, 128));
   scroll_layer_set_click_config_onto_window(&s_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
 
