@@ -82,7 +82,6 @@ void handle_init(AppContextRef ctx) {
   // Trim text layer and scroll content to fit text box
   GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
   text_layer_set_size(&s_data.sifter_text_layer, max_size);
-  scroll_layer_set_frame(&s_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, 168));
   scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
 
   // Add the sifter text layer and scroll layer to the window
