@@ -32,10 +32,12 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() {
+        super.onResume();
+
         sifterDataReceiver = new PebbleKit.PebbleDataReceiver(Constants.PEBBLE_SIFTER_UUID) {
             @Override
             public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
-                String newSifterName = data.getString(Constants.SIFTER_NAME);
+                String newSifterName = data.getString(Constants.SIFTER_SELECT);
 
                 PebbleKit.sendAckToPebble(context, transactionId);
 

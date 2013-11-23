@@ -7,4 +7,5 @@ public class Constants {
 
     public static final int SIFTER_NAME = 0x0;
     public static final int SIFTER_TEXT = 0x1;
+    public static final int SIFTER_SELECT = 0x2;
 }
