@@ -15,7 +15,7 @@ typedef enum {
 } ResourceId;
 static const ResBankVersion VERSION = {
   .crc = 2400173576,
-  .timestamp = 1385234814,
+  .timestamp = 1385235553,
   .friendly_version = "VERSION"
 };
 
