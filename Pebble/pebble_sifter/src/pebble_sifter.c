@@ -52,6 +52,30 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
   }
 }
 
+static void send_cmd(char sifter_name[]) {
+  Tuplet value = TupletCString(SIFTER_NAME_KEY, sifter_name);
+  
+  DictionaryIterator *iter;
+  app_message_out_get(&iter);
+  
+  if (iter == NULL)
+    return;
+  
+  dict_write_tuplet(iter, &value);
+  dict_write_end(iter);
+  
+  app_message_out_send();
+  app_message_out_release();
+}
+
+void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
+  send_cmd("something");
+}
+
+void click_config_provider(ClickConfig **config, Window *window) {
+  config[BUTTON_ID_SELECT]->click.handler = (ClickHandler) select_single_click_handler;
+}
+
 void handle_init(AppContextRef ctx) {
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
@@ -90,6 +114,10 @@ void handle_init(AppContextRef ctx) {
   scroll_layer_add_child(&s_data.sifter_text_scroll_layer, &s_data.sifter_text_layer.layer);
   layer_add_child(&window->layer, &s_data.sifter_text_scroll_layer.layer);
 
+  // Initialize select button config
+  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
+
+  // Initialize AppSync
   app_sync_init(&s_data.sync, s_data.sync_buffer, sizeof(s_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
 }
 
