@@ -55,7 +55,7 @@ void handle_init(AppContextRef ctx) {
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_NAME_KEY, "Sifter Name"),
-    TupletCString(SIFTER_TEXT_KEY, "Sifted Text// Initialize the sifter name layer and add it to the window  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);  text_layer_set_text"),
+    TupletCString(SIFTER_TEXT_KEY, "Sifted Text// Initialize the sifter name layer and add it to the window  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);  text_layer_set_text(&s_data.sifter_name_layer, Sifter Name);  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);"),
   };
 
   // Initialize the window
@@ -70,14 +70,14 @@ void handle_init(AppContextRef ctx) {
 //  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
-  scroll_layer_init(&s_data.sifter_text_scroll_layer, window->layer.bounds);
-//  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, 128));
+//  scroll_layer_init(&s_data.sifter_text_scroll_layer, window->layer.bounds);
+  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - 16)));
   scroll_layer_set_click_config_onto_window(&s_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
 
   // Initialize the sifter text layer
   text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
-  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text// Initialize the sifter name layer and add it to the window  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);  text_layer_set_text");
+  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text// Initialize the sifter name layer and add it to the window  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);  text_layer_set_text(&s_data.sifter_name_layer, Sifter Name);  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);");
 
   // Trim text layer and scroll content to fit text box
   GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
