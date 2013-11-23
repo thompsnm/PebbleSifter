@@ -28,6 +28,7 @@ static struct PebbleSifterData {
 enum {
   SIFTER_NAME_KEY = 0x0,    // TUPLE_CSTRING
   SIFTER_TEXT_KEY = 0x1,    // TUPLE_CSTRING
+  SIFTER_SELECT_KEY = 0x2,  // TUPLE_CSTRING
 };
 
 // TODO: Error handling
@@ -52,8 +53,8 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
   }
 }
 
-static void send_cmd(char sifter_name[]) {
-  Tuplet value = TupletCString(SIFTER_NAME_KEY, sifter_name);
+static void send_cmd(char sifter_select[]) {
+  Tuplet value = TupletCString(SIFTER_SELECT_KEY, sifter_select);
   
   DictionaryIterator *iter;
   app_message_out_get(&iter);
