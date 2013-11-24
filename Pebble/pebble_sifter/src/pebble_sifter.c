@@ -116,7 +116,9 @@ void handle_init(AppContextRef ctx) {
   layer_add_child(&window->layer, &s_data.sifter_text_scroll_layer.layer);
 
   // Initialize select button config
-  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
+  // Looks like this doesn't play well with scroll_layer_set_click_config_onto_window
+  // Commenting it out until I can dig into it further
+//  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
 
   // Initialize AppSync
   app_sync_init(&s_data.sync, s_data.sync_buffer, sizeof(s_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
