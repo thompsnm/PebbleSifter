@@ -76,14 +76,53 @@ static void send_cmd(char sifter_select[]) {
   app_message_out_release();
 }
 
-void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
-  sifter_menu_init;
+static void handle_deinit(AppContextRef c) {
+  app_sync_deinit(&main_screen_data.sync);
 }
 
 void menu_select_callback(int index, void *ctx) {
   Window* window = &sifter_menu_data.window;
-  window_stack_pop(window, true /* Animated */ );
+  window_stack_pop(window);
   send_cmd("something");
+}
+
+void sifter_menu_init() {
+  // Initialize the menu window
+  Window* window = &sifter_menu_data.window;
+  window_init(window, "Sifter Menu");
+  window_stack_push(window, true /* Animated */ );
+
+  int num_a_items = 0;
+
+  // Set up the menu items
+  sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
+    .title = "First Item",
+    .callback = menu_select_callback,
+  };
+
+  sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
+    .title = "Second Item",
+    .subtitle = "Here's a subtitle",
+    .callback = menu_select_callback,
+  };
+
+  // Bind the menu items to the corresponding menu sections
+  sifter_menu_data.menu_sections[0] = (SimpleMenuSection){
+    .num_items = 2,
+    .items = sifter_menu_data.menu_items,
+  };
+
+  GRect bounds = window->layer.bounds;
+
+  // Initialize the simple menu layer
+  simple_menu_layer_init(&sifter_menu_data.simple_menu_layer, bounds, window, sifter_menu_data.menu_sections, 1, NULL);
+
+  // Add it to the window for display
+  layer_add_child(&window->layer, simple_menu_layer_get_layer(&sifter_menu_data.simple_menu_layer));
+}
+
+void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
+  sifter_menu_init();
 }
 
 void click_config_provider(ClickConfig **config, Window *window) {
@@ -137,45 +176,6 @@ void main_screen_handle_init(AppContextRef ctx) {
 
   // Initialize AppSync
   app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
-}
-
-void sifter_menu_init() {
-  // Initialize the menu window
-  Window* window = &sifter_menu_data.window;
-  window_init(window, "Sifter Menu");
-  window_stack_push(window, true /* Animated */ );
-
-  int num_a_items = 0;
-
-  // Set up the menu items
-  &sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
-    .title = "First Item",
-    .callback = menu_select_callback,
-  };
-
-  &sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
-    .title = "Second Item",
-    .subtitle = "Here's a subtitle",
-    .callback = menu_select_callback,
-  };
-
-  // Bind the menu items to the corresponding menu sections
-  menu_sections[0] = (SimpleMenuSection){
-    .num_items = NUM_FIRST_MENU_ITEMS,
-    .items = first_menu_items,
-  };
-
-  GRect bounds = window->layer.bounds;
-
-  // Initialize the simple menu layer
-  simple_menu_layer_init(&sifter_menu_data.simple_menu_layer, bounds, window, &sifter_menu_data.menu_sections, 1, NULL);
-
-  // Add it to the window for display
-  layer_add_child(&me->layer, simple_menu_layer_get_layer(&simple_menu_layer));
-}
-
-static void handle_deinit(AppContextRef c) {
-  app_sync_deinit(&main_screen_data.sync);
 }
 
 void pbl_main(void *params) {
