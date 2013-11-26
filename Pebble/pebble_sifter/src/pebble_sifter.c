@@ -16,14 +16,21 @@ const int header_display_height = 16;
 
 const int sifter_name_layer_vert_size = 20;
 
-static struct PebbleSifterData {
+static struct MainScreenData {
   Window window;
   ScrollLayer sifter_text_scroll_layer;
   TextLayer sifter_name_layer;
   TextLayer sifter_text_layer;
   AppSync sync;
   uint8_t sync_buffer[128];
-} s_data;
+} main_screen_data;
+
+static struct SifterMenuData {
+  Window window;
+  SimpleMenuLayer simple_menu_layer;
+  SimpleMenuSection menu_sections[1];
+  SimpleMenuItem menu_items[2];
+} sifter_menu_data;
 
 enum {
   SIFTER_NAME_KEY = 0x0,    // TUPLE_CSTRING
@@ -39,14 +46,14 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
   switch (key) {
   case SIFTER_NAME_KEY:
-    text_layer_set_text(&s_data.sifter_name_layer, new_tuple->value->cstring);
+    text_layer_set_text(&main_screen_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
-    scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
-    text_layer_set_text(&s_data.sifter_text_layer, new_tuple->value->cstring);
-    GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
-    text_layer_set_size(&s_data.sifter_text_layer, max_size);
-    scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
+    scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
+    text_layer_set_text(&main_screen_data.sifter_text_layer, new_tuple->value->cstring);
+    GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &main_screen_data.sifter_text_layer);
+    text_layer_set_size(&main_screen_data.sifter_text_layer, max_size);
+    scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
     break;
   default:
     return;
@@ -70,6 +77,12 @@ static void send_cmd(char sifter_select[]) {
 }
 
 void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
+  sifter_menu_init;
+}
+
+void menu_select_callback(int index, void *ctx) {
+  Window* window = &sifter_menu_data.window;
+  window_stack_pop(window, true /* Animated */ );
   send_cmd("something");
 }
 
@@ -77,7 +90,7 @@ void click_config_provider(ClickConfig **config, Window *window) {
   config[BUTTON_ID_SELECT]->click.handler = (ClickHandler) select_single_click_handler;
 }
 
-void handle_init(AppContextRef ctx) {
+void main_screen_handle_init(AppContextRef ctx) {
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
   Tuplet initial_values[] = {
@@ -85,53 +98,89 @@ void handle_init(AppContextRef ctx) {
     TupletCString(SIFTER_TEXT_KEY, "Sifted Text"),
   };
 
-  // Initialize the window
-  Window* window = &s_data.window;
+  // Initialize the main screen window
+  Window* window = &main_screen_data.window;
   window_init(window, "Pebble Sifter");
   window_stack_push(window, true /* Animated */ );
 
   // Initialize the sifter name layer and add it to the window
-  text_layer_init(&s_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));
-  text_layer_set_text_alignment(&s_data.sifter_name_layer, GTextAlignmentCenter);
-  text_layer_set_text(&s_data.sifter_name_layer, "Sifter Name");
-  layer_add_child(&window->layer, &s_data.sifter_name_layer.layer);
+  text_layer_init(&main_screen_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));
+  text_layer_set_text_alignment(&main_screen_data.sifter_name_layer, GTextAlignmentCenter);
+  // TODO: This should be pulled from initial_values
+  text_layer_set_text(&main_screen_data.sifter_name_layer, "Sifter Name");
+  layer_add_child(&window->layer, &main_screen_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
-  scroll_layer_init(&s_data.sifter_text_scroll_layer, window->layer.bounds);
-  scroll_layer_init(&s_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
-  scroll_layer_set_click_config_onto_window(&s_data.sifter_text_scroll_layer, window);
-  scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, max_text_bounds.size);
-
-  // Initialize the sifter text layer
-  text_layer_init(&s_data.sifter_text_layer, max_text_bounds);
-  text_layer_set_text(&s_data.sifter_text_layer, "Sifted Text");
-
-  // Trim text layer and scroll content to fit text box
-  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &s_data.sifter_text_layer);
-  text_layer_set_size(&s_data.sifter_text_layer, max_size);
-  scroll_layer_set_content_size(&s_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
-
-  // Add the sifter text layer and scroll layer to the window
-  scroll_layer_add_child(&s_data.sifter_text_scroll_layer, &s_data.sifter_text_layer.layer);
-  layer_add_child(&window->layer, &s_data.sifter_text_scroll_layer.layer);
-
-  // Initialize select button config
+  scroll_layer_init(&main_screen_data.sifter_text_scroll_layer, window->layer.bounds);
+  scroll_layer_init(&main_screen_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
   // Looks like this doesn't play well with scroll_layer_set_click_config_onto_window
   // Commenting it out until I can dig into it further
-//  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
+//  scroll_layer_set_click_config_onto_window(&main_screen_data.sifter_text_scroll_layer, window);
+  scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
+
+  // Initialize the sifter text layer
+  text_layer_init(&main_screen_data.sifter_text_layer, max_text_bounds);
+  // TODO: This should be pulled from initial_values
+  text_layer_set_text(&main_screen_data.sifter_text_layer, "Sifted Text");
+
+  // Trim text layer and scroll content to fit text box
+  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &main_screen_data.sifter_text_layer);
+  text_layer_set_size(&main_screen_data.sifter_text_layer, max_size);
+  scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
+
+  // Add the sifter text layer and scroll layer to the window
+  scroll_layer_add_child(&main_screen_data.sifter_text_scroll_layer, &main_screen_data.sifter_text_layer.layer);
+  layer_add_child(&window->layer, &main_screen_data.sifter_text_scroll_layer.layer);
+
+  // Initialize select button config
+  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
 
   // Initialize AppSync
-  app_sync_init(&s_data.sync, s_data.sync_buffer, sizeof(s_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
+  app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
+}
+
+void sifter_menu_init() {
+  // Initialize the menu window
+  Window* window = &sifter_menu_data.window;
+  window_init(window, "Sifter Menu");
+  window_stack_push(window, true /* Animated */ );
+
+  int num_a_items = 0;
+
+  // Set up the menu items
+  &sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
+    .title = "First Item",
+    .callback = menu_select_callback,
+  };
+
+  &sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
+    .title = "Second Item",
+    .subtitle = "Here's a subtitle",
+    .callback = menu_select_callback,
+  };
+
+  // Bind the menu items to the corresponding menu sections
+  menu_sections[0] = (SimpleMenuSection){
+    .num_items = NUM_FIRST_MENU_ITEMS,
+    .items = first_menu_items,
+  };
+
+  GRect bounds = window->layer.bounds;
+
+  // Initialize the simple menu layer
+  simple_menu_layer_init(&sifter_menu_data.simple_menu_layer, bounds, window, &sifter_menu_data.menu_sections, 1, NULL);
+
+  // Add it to the window for display
+  layer_add_child(&me->layer, simple_menu_layer_get_layer(&simple_menu_layer));
 }
 
 static void handle_deinit(AppContextRef c) {
-  app_sync_deinit(&s_data.sync);
+  app_sync_deinit(&main_screen_data.sync);
 }
-
 
 void pbl_main(void *params) {
   PebbleAppHandlers handlers = {
-    .init_handler = &handle_init,
+    .init_handler = &main_screen_handle_init,
     .deinit_handler = &handle_deinit,
     .messaging_info = {
       .buffer_sizes = {
