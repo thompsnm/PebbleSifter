@@ -16,13 +16,9 @@ const int header_display_height = 16;
 
 const int sifter_name_layer_vert_size = 20;
 
-const char *sifter_names[2];
-sifter_names[0] = "Team Trivia";
-sifter_names[1] = "Hartmann";
+char *sifter_names[2];
 
-const char *sifter_full_names[2];
-sifter_full_names[0] = "Team Trivia Free Answer";
-sifter_full_names[1] = "Hartmann Game Status";
+char *sifter_full_names[2];
 
 static struct MainScreenData {
   Window window;
@@ -84,6 +80,7 @@ static void send_cmd(char sifter_select[]) {
   app_message_out_release();
 }
 
+// TODO: Should the deinit handler be destroying the layers / windows?
 static void handle_deinit(AppContextRef c) {
   app_sync_deinit(&main_screen_data.sync);
 }
@@ -103,13 +100,15 @@ void sifter_menu_init() {
   int num_a_items = 0;
 
   // Set up the menu items
-  sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
-    .title = sifter_name_0,
+  sifter_menu_data.menu_items[num_a_items] = (SimpleMenuItem){
+    .title = sifter_names[num_a_items],
     .callback = menu_select_callback,
   };
 
-  sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
-    .title = sifter_name_1,
+  num_a_items++;
+
+  sifter_menu_data.menu_items[num_a_items] = (SimpleMenuItem){
+    .title = sifter_names[num_a_items],
     .callback = menu_select_callback,
   };
 
@@ -186,6 +185,12 @@ void main_screen_handle_init(AppContextRef ctx) {
 }
 
 void pbl_main(void *params) {
+  sifter_names[0] = "Team Trivia";
+  sifter_names[1] = "Hartmann";
+
+  sifter_full_names[0] = "Team Trivia Free Answer";
+  sifter_full_names[1] = "Hartmann Game Status";
+
   PebbleAppHandlers handlers = {
     .init_handler = &main_screen_handle_init,
     .deinit_handler = &handle_deinit,
