@@ -37,12 +37,12 @@ public class MainActivity extends Activity {
         sifterDataReceiver = new PebbleKit.PebbleDataReceiver(Constants.PEBBLE_SIFTER_UUID) {
             @Override
             public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
-                String newSifterName = data.getString(Constants.SIFTER_SELECT);
+                String newSifterFullName = data.getString(Constants.SIFTER_FULL_NAME_KEY);
 
                 PebbleKit.sendAckToPebble(context, transactionId);
 
                 for (Button sifterButton : sifterButtons) {
-                    if (sifterButton.getText().equals("Team Trivia Free Answer")) {
+                    if (sifterButton.getText().equals(newSifterFullName)) {
                         sifterButton.performClick();
                         break;
                     }

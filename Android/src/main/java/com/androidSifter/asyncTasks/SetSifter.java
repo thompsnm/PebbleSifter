@@ -51,7 +51,7 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
 
         // Send text to Pebble app
         PebbleDictionary dictionary = new PebbleDictionary();
-        dictionary.addString(Constants.SIFTER_NAME, sifter.getPebbleName());
+        dictionary.addString(Constants.SIFTER_PEBBLE_NAME, sifter.getPebbleName());
         dictionary.addString(Constants.SIFTER_TEXT, siftedTextString);
         PebbleKit.sendDataToPebble(activity, Constants.PEBBLE_SIFTER_UUID, dictionary);
     }

@@ -16,6 +16,14 @@ const int header_display_height = 16;
 
 const int sifter_name_layer_vert_size = 20;
 
+const char *sifter_names[2];
+sifter_names[0] = "Team Trivia";
+sifter_names[1] = "Hartmann";
+
+const char *sifter_full_names[2];
+sifter_full_names[0] = "Team Trivia Free Answer";
+sifter_full_names[1] = "Hartmann Game Status";
+
 static struct MainScreenData {
   Window window;
   ScrollLayer sifter_text_scroll_layer;
@@ -33,9 +41,9 @@ static struct SifterMenuData {
 } sifter_menu_data;
 
 enum {
-  SIFTER_NAME_KEY = 0x0,    // TUPLE_CSTRING
+  SIFTER_PEBBLE_NAME_KEY = 0x0,    // TUPLE_CSTRING
   SIFTER_TEXT_KEY = 0x1,    // TUPLE_CSTRING
-  SIFTER_SELECT_KEY = 0x2,  // TUPLE_CSTRING
+  SIFTER_FULL_NAME_KEY = 0x2,  // TUPLE_CSTRING
 };
 
 // TODO: Error handling
@@ -45,7 +53,7 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
   switch (key) {
-  case SIFTER_NAME_KEY:
+  case SIFTER_PEBBLE_NAME_KEY:
     text_layer_set_text(&main_screen_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
@@ -61,7 +69,7 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 }
 
 static void send_cmd(char sifter_select[]) {
-  Tuplet value = TupletCString(SIFTER_SELECT_KEY, sifter_select);
+  Tuplet value = TupletCString(SIFTER_FULL_NAME_KEY, sifter_select);
   
   DictionaryIterator *iter;
   app_message_out_get(&iter);
@@ -83,7 +91,7 @@ static void handle_deinit(AppContextRef c) {
 void menu_select_callback(int index, void *ctx) {
   Window* window = &sifter_menu_data.window;
   window_stack_pop(window);
-  send_cmd("something");
+  send_cmd(sifter_full_names[index]);
 }
 
 void sifter_menu_init() {
@@ -96,13 +104,12 @@ void sifter_menu_init() {
 
   // Set up the menu items
   sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
-    .title = "First Item",
+    .title = sifter_name_0,
     .callback = menu_select_callback,
   };
 
   sifter_menu_data.menu_items[num_a_items++] = (SimpleMenuItem){
-    .title = "Second Item",
-    .subtitle = "Here's a subtitle",
+    .title = sifter_name_1,
     .callback = menu_select_callback,
   };
 
@@ -133,7 +140,7 @@ void main_screen_handle_init(AppContextRef ctx) {
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
   Tuplet initial_values[] = {
-    TupletCString(SIFTER_NAME_KEY, "Sifter Name"),
+    TupletCString(SIFTER_PEBBLE_NAME_KEY, "Sifter Name"),
     TupletCString(SIFTER_TEXT_KEY, "Sifted Text"),
   };
 
@@ -152,7 +159,7 @@ void main_screen_handle_init(AppContextRef ctx) {
   // Initialize the scroll layer
   scroll_layer_init(&main_screen_data.sifter_text_scroll_layer, window->layer.bounds);
   scroll_layer_init(&main_screen_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
-  // Looks like this doesn't play well with scroll_layer_set_click_config_onto_window
+  // Looks like this doesn't play well with window_set_click_config_provider
   // Commenting it out until I can dig into it further
 //  scroll_layer_set_click_config_onto_window(&main_screen_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
