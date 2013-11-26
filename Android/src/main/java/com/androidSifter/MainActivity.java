@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
         sifterDataReceiver = new PebbleKit.PebbleDataReceiver(Constants.PEBBLE_SIFTER_UUID) {
             @Override
             public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
-                String newSifterFullName = data.getString(Constants.SIFTER_FULL_NAME_KEY);
+                String newSifterFullName = data.getString(Constants.SIFTER_FULL_NAME);
 
                 PebbleKit.sendAckToPebble(context, transactionId);
 
