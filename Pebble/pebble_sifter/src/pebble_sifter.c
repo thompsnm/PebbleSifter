@@ -161,8 +161,8 @@ void main_screen_handle_init(AppContextRef ctx) {
   scroll_layer_init(&main_screen_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
   // Looks like this doesn't play well with window_set_click_config_provider
   // Commenting it out until I can dig into it further
-  &main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
-  scroll_layer_set_callbacks(&main_screen_data.sifter_text_scroll_layer, &main_screen_data.scroll_layer_callbacks);
+  main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
+  scroll_layer_set_callbacks(&main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
   scroll_layer_set_click_config_onto_window(&main_screen_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
 
