@@ -25,6 +25,7 @@ static struct MainScreenData {
   ScrollLayer sifter_text_scroll_layer;
   TextLayer sifter_name_layer;
   TextLayer sifter_text_layer;
+  ScrollLayerCallbacks scroll_layer_callbacks;
   AppSync sync;
   uint8_t sync_buffer[128];
 } main_screen_data;
@@ -160,7 +161,9 @@ void main_screen_handle_init(AppContextRef ctx) {
   scroll_layer_init(&main_screen_data.sifter_text_scroll_layer, GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
   // Looks like this doesn't play well with window_set_click_config_provider
   // Commenting it out until I can dig into it further
-//  scroll_layer_set_click_config_onto_window(&main_screen_data.sifter_text_scroll_layer, window);
+  &main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
+  scroll_layer_set_callbacks(&main_screen_data.sifter_text_scroll_layer, &main_screen_data.scroll_layer_callbacks);
+  scroll_layer_set_click_config_onto_window(&main_screen_data.sifter_text_scroll_layer, window);
   scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
 
   // Initialize the sifter text layer
@@ -178,7 +181,7 @@ void main_screen_handle_init(AppContextRef ctx) {
   layer_add_child(&window->layer, &main_screen_data.sifter_text_scroll_layer.layer);
 
   // Initialize select button config
-  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
+//  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
 
   // Initialize AppSync
   app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
