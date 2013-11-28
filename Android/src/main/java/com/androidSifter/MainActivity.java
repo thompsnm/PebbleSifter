@@ -1,6 +1,7 @@
 package com.androidSifter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -33,23 +34,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        sifterDataReceiver = new PebbleKit.PebbleDataReceiver(Constants.PEBBLE_SIFTER_UUID) {
-            @Override
-            public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
-                String newSifterFullName = data.getString(Constants.SIFTER_FULL_NAME);
-
-                PebbleKit.sendAckToPebble(context, transactionId);
-
-                for (Button sifterButton : sifterButtons) {
-                    if (sifterButton.getText().equals(newSifterFullName)) {
-                        sifterButton.performClick();
-                        break;
-                    }
-                }
-            }
-        };
-        PebbleKit.registerReceivedDataHandler(this, sifterDataReceiver);
     }
 
     @Override
