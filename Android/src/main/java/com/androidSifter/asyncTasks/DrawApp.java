@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
 
-    ArrayList<PebbleSifter> sifters = new ArrayList<PebbleSifter>();
+    // TODO: Yeah, this is totally the wrong way to do things
+    public static ArrayList<PebbleSifter> sifters = new ArrayList<PebbleSifter>();
     Activity activity;
 
     public DrawApp(Activity activity) {

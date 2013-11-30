@@ -1,12 +1,13 @@
 #include <pebble.h>
+#include "node.h"
 
 const int vert_scroll_text_padding = 4;
 const int header_display_height = 16;
 const int sifter_name_layer_vert_size = 20;
 const int inbound_size = 512;
 const int outbound_size = 512;
-char *sifter_names[2];
-char *sifter_full_names[2];
+struct node *sifter_names_root = NULL;
+struct node *sifter_full_names_root = NULL;
 
 static struct MainScreenData {
   Window *window;
@@ -26,9 +27,11 @@ static struct SifterMenuData {
 } sifter_menu_data;
 
 enum {
-  SIFTER_PEBBLE_NAME_KEY = 0x0,    // TUPLE_CSTRING
-  SIFTER_TEXT_KEY = 0x1,    // TUPLE_CSTRING
-  SIFTER_FULL_NAME_KEY = 0x2,  // TUPLE_CSTRING
+  SIFTER_PEBBLE_NAME_KEY = 0x0,        // TUPLE_CSTRING
+  SIFTER_TEXT_KEY = 0x1,               // TUPLE_CSTRING
+  SIFTER_FULL_NAME_KEY = 0x2,          // TUPLE_CSTRING
+  HANDSHAKE_KEY = 0x3,                 // TUPLE_BOOLEAN
+  SIFTER_PEBBLE_MENU_NAME_KEY = 0x4,   // TUPLE_CSTRING
 };
 
 // TODO: Error handling
@@ -36,7 +39,6 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
-  const GRect max_text_bounds = GRect(0, 0, 144, 2000);
   switch (key) {
   case SIFTER_PEBBLE_NAME_KEY:
     text_layer_set_text(main_screen_data.sifter_name_layer, new_tuple->value->cstring);
@@ -47,12 +49,18 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
     text_layer_set_size(main_screen_data.sifter_text_layer, max_size);
     scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
     break;
+  case SIFTER_FULL_NAME_KEY:
+    addNode(sifter_names_root, new_tuple->value->cstring);
+	  break;
+  case SIFTER_PEBBLE_MENU_NAME_KEY:
+    addNode(sifter_full_names_root, new_tuple->value->cstring);
+    break;
   default:
     return;
   }
 }
 
-static void send_cmd(char sifter_select[]) {
+static void send_sifter_select_cmd(char sifter_select[]) {
   Tuplet value = TupletCString(SIFTER_FULL_NAME_KEY, sifter_select);
   
   DictionaryIterator *iter;
@@ -67,6 +75,21 @@ static void send_cmd(char sifter_select[]) {
   app_message_outbox_send();
 }
 
+static void send_handshake_cmd() {
+  Tuplet value = TupletInteger(HANDSHAKE_KEY, 1);
+
+  DictionaryIterator *iter;
+  app_message_outbox_begin(&iter);
+
+  if (iter == NULL)
+    return;
+
+  dict_write_tuplet(iter, &value);
+  dict_write_end(iter);
+
+  app_message_outbox_send();
+}
+
 static void handle_deinit(void) {
   app_sync_deinit(&main_screen_data.sync);
   window_destroy(main_screen_data.window);
@@ -75,11 +98,13 @@ static void handle_deinit(void) {
   text_layer_destroy(main_screen_data.sifter_text_layer);
   window_destroy(sifter_menu_data.window);
   simple_menu_layer_destroy(sifter_menu_data.simple_menu_layer);
+  freeNodes(sifter_names_root);
+  freeNodes(sifter_full_names_root);
 }
 
 void menu_select_callback(int index, void *ctx) {
   window_stack_pop(sifter_menu_data.window);
-  send_cmd(sifter_full_names[index]);
+  send_sifter_select_cmd((char *)getNodeAtIndex(sifter_full_names_root, index)->text);
 }
 
 void sifter_menu_init() {
@@ -87,20 +112,14 @@ void sifter_menu_init() {
   sifter_menu_data.window = window_create();
   window_stack_push(sifter_menu_data.window, true /* Animated */ );
 
-  int num_a_items = 0;
-
   // Set up the menu items
-  sifter_menu_data.menu_items[num_a_items] = (SimpleMenuItem){
-    .title = sifter_names[num_a_items],
-    .callback = menu_select_callback,
-  };
-
-  num_a_items++;
-
-  sifter_menu_data.menu_items[num_a_items] = (SimpleMenuItem){
-    .title = sifter_names[num_a_items],
-    .callback = menu_select_callback,
-  };
+  size_t num_a_items;
+  for(num_a_items = 0; num_a_items < size(sifter_names_root); num_a_items++) {
+    sifter_menu_data.menu_items[num_a_items] = (SimpleMenuItem){
+      .title = (char *)getNodeAtIndex(sifter_names_root, num_a_items),
+      .callback = menu_select_callback,
+    };
+  }
 
   // Bind the menu items to the corresponding menu sections
   sifter_menu_data.menu_sections[0] = (SimpleMenuSection){
@@ -131,6 +150,8 @@ void main_screen_handle_init(void) {
   Tuplet initial_values[] = {
     TupletCString(SIFTER_PEBBLE_NAME_KEY, "Sifter Name"),
     TupletCString(SIFTER_TEXT_KEY, "Sifted Text.\n\nPress the Select button to choose from a list of sifters."),
+    TupletCString(SIFTER_FULL_NAME_KEY, ""),
+    TupletCString(SIFTER_PEBBLE_MENU_NAME_KEY, ""),
   };
 
   // Open AppMessage to transfers
@@ -170,15 +191,10 @@ void main_screen_handle_init(void) {
 
   // Initialize AppSync
   app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
+  send_handshake_cmd();
 }
 
 int main(void) {
-  sifter_names[0] = "Team Trivia";
-  sifter_names[1] = "Hartmann";
-
-  sifter_full_names[0] = "Team Trivia Free Answer";
-  sifter_full_names[1] = "Hartmann Game Status";
-
   main_screen_handle_init();
   app_event_loop();
   handle_deinit();

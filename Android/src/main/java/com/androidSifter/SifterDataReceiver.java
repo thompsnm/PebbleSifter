@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Button;
 
+import com.androidSifter.asyncTasks.DrawApp;
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
@@ -18,6 +19,17 @@ public class SifterDataReceiver extends PebbleKit.PebbleDataReceiver {
 
     @Override
     public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
+        if (data.getBoolean(Constants.HANDSHAKE) == true) {
+            PebbleKit.sendAckToPebble(context, transactionId);
+
+            // Send sifter pebble names to Pebble app
+            for (PebbleSifter sifter : DrawApp.sifters) {
+                PebbleDictionary dictionary = new PebbleDictionary();
+                dictionary.addString(Constants.SIFTER_FULL_NAME, sifter.getFullName());
+                dictionary.addString(Constants.SIFTER_PEBBLE_MENU_NAME, sifter.getPebbleName());
+                PebbleKit.sendDataToPebble(activity, Constants.PEBBLE_SIFTER_UUID, dictionary);
+            }
+        } else {
             String newSifterFullName = data.getString(Constants.SIFTER_FULL_NAME);
 
             PebbleKit.sendAckToPebble(context, transactionId);
@@ -38,4 +50,5 @@ public class SifterDataReceiver extends PebbleKit.PebbleDataReceiver {
 
             context.startActivity(i);
         }
+    }
 }
