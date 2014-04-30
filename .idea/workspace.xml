@@ -16,7 +16,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/app_resources.pbpack" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/app_resources.pbpack" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/config.log" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/config.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PebbleSifter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.69970846" vertical-offset="240" max-vertical-offset="3120">
-              <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+              <caret line="48" column="49" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -699,12 +698,12 @@
       <created>1382846077948</created>
       <updated>1382846077948</updated>
       <workItem from="1398820460293" duration="92000" />
-      <workItem from="1398864482838" duration="3447000" />
+      <workItem from="1398864482838" duration="3541000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3539000" />
+    <option name="totallyTimeSpent" value="3633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -810,7 +809,7 @@
     <entry file="file://$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.69970846" vertical-offset="240" max-vertical-offset="3120">
-          <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+          <caret line="48" column="49" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
           <folding />
         </state>
       </provider>
