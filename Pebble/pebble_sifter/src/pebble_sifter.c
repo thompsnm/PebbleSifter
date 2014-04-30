@@ -41,7 +41,7 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
   switch (key) {
   case SIFTER_PEBBLE_NAME_KEY:
-    text_layer_set_text(&main_screen_data.sifter_name_layer, new_tuple->value->cstring);
+    text_layer_set_text(main_screen_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
     scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
