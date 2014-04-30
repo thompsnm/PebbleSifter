@@ -153,19 +153,19 @@ void main_screen_handle_init(void) {
   // Looks like this doesn't play well with window_set_click_config_provider
   // Commenting it out until I can dig into it further
   main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
-  scroll_layer_set_callbacks(&main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
-  scroll_layer_set_click_config_onto_window(&main_screen_data.sifter_text_scroll_layer, window);
-  scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
+  scroll_layer_set_callbacks(main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
+  scroll_layer_set_click_config_onto_window(main_screen_data.sifter_text_scroll_layer, window);
+  scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
 
   // Initialize the sifter text layer
-  text_layer_init(&main_screen_data.sifter_text_layer, max_text_bounds);
+  main_screen_data.sifter_text_layer = text_layer_create(max_text_bounds);
   // TODO: This should be pulled from initial_values
-  text_layer_set_text(&main_screen_data.sifter_text_layer, "Sifted Text");
+  text_layer_set_text(main_screen_data.sifter_text_layer, "Sifted Text");
 
   // Trim text layer and scroll content to fit text box
-  GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &main_screen_data.sifter_text_layer);
-  text_layer_set_size(&main_screen_data.sifter_text_layer, max_size);
-  scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
+  GSize max_size = text_layer_get_content_size(main_screen_data.sifter_text_layer);
+  text_layer_set_size(main_screen_data.sifter_text_layer, max_size);
+  scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
 
   // Add the sifter text layer and scroll layer to the window
   scroll_layer_add_child(&main_screen_data.sifter_text_scroll_layer, &main_screen_data.sifter_text_layer.layer);
