@@ -59,7 +59,7 @@ static void send_cmd(char sifter_select[]) {
   Tuplet value = TupletCString(SIFTER_FULL_NAME_KEY, sifter_select);
   
   DictionaryIterator *iter;
-  app_message_out_get(&iter);
+  app_message_outbox_begin(&iter);
   
   if (iter == NULL)
     return;
@@ -67,8 +67,7 @@ static void send_cmd(char sifter_select[]) {
   dict_write_tuplet(iter, &value);
   dict_write_end(iter);
   
-  app_message_out_send();
-  app_message_out_release();
+  app_message_outbox_send();
 }
 
 static void handle_deinit(void) {
