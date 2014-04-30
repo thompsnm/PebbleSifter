@@ -44,8 +44,8 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
     text_layer_set_text(main_screen_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
-    scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
-    text_layer_set_text(&main_screen_data.sifter_text_layer, new_tuple->value->cstring);
+    scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
+    text_layer_set_text(main_screen_data.sifter_text_layer, new_tuple->value->cstring);
     GSize max_size = text_layer_get_max_used_size(app_get_current_graphics_context(), &main_screen_data.sifter_text_layer);
     text_layer_set_size(&main_screen_data.sifter_text_layer, max_size);
     scroll_layer_set_content_size(&main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
