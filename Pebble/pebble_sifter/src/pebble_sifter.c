@@ -82,8 +82,7 @@ static void handle_deinit(void) {
 }
 
 void menu_select_callback(int index, void *ctx) {
-  Window* window = &sifter_menu_data.window;
-  window_stack_pop(window);
+  window_stack_pop(sifter_menu_data.window);
   send_cmd(sifter_full_names[index]);
 }
 
