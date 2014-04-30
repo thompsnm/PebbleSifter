@@ -124,8 +124,8 @@ void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) 
   sifter_menu_init();
 }
 
-void click_config_provider(ClickConfig **config, Window *window) {
-  config[BUTTON_ID_SELECT]->click.handler = (ClickHandler) select_single_click_handler;
+void click_config_provider(Window *window) {
+  window_single_click_subscribe(BUTTON_ID_SELECT, (ClickHandler) select_single_click_handler);
 }
 
 void main_screen_handle_init(void) {
