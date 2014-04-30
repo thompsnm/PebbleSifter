@@ -11,10 +11,10 @@ char *sifter_names[2];
 char *sifter_full_names[2];
 
 static struct MainScreenData {
-  Window window;
-  ScrollLayer sifter_text_scroll_layer;
-  TextLayer sifter_name_layer;
-  TextLayer sifter_text_layer;
+  Window *window;
+  ScrollLayer *sifter_text_scroll_layer;
+  TextLayer *sifter_name_layer;
+  TextLayer *sifter_text_layer;
   ScrollLayerCallbacks scroll_layer_callbacks;
   AppSync sync;
   uint8_t sync_buffer[128];
