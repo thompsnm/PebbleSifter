@@ -1,0 +1,12 @@
+
+# Files in flux
+*.*~
+
+# Ignore IntelliJ files/directories
+.idea
+PebbleSifter.iml
+
+# Ignore Gradle files/directories
+.gradle
+gradlew*
+gradle

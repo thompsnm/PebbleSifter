@@ -1,0 +1,15 @@
+{
+  "uuid": "aca3b3d0-bf4a-4777-9238-ff95f07aa221",
+  "shortName": "Pebble Sifter",
+  "longName": "Pebble Sifter",
+  "companyName": "thompsnm",
+  "versionCode": 0,
+  "versionLabel": "0.1.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {},
+  "resources": {
+    "media": []
+  }
+}
