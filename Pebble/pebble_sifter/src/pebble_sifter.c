@@ -21,8 +21,8 @@ static struct MainScreenData {
 } main_screen_data;
 
 static struct SifterMenuData {
-  Window window;
-  SimpleMenuLayer simple_menu_layer;
+  Window *window;
+  SimpleMenuLayer *simple_menu_layer;
   SimpleMenuSection menu_sections[1];
   SimpleMenuItem menu_items[2];
 } sifter_menu_data;
