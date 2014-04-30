@@ -1,12 +1,5 @@
 #include <pebble.h>
 
-#define MY_UUID { 0xAC, 0xA3, 0xB3, 0xD0, 0xBF, 0x4A, 0x47, 0x77, 0x92, 0x38, 0xFF, 0x95, 0xF0, 0x7A, 0xA2, 0x21 }
-PBL_APP_INFO(MY_UUID,
-             "Pebble Sifter", "thompsnm",
-             0, 1, /* App version */
-             DEFAULT_MENU_ICON,
-             APP_INFO_STANDARD_APP);
-
 const int vert_scroll_text_padding = 4;
 
 const int header_display_height = 16;
