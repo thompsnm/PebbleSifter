@@ -71,9 +71,14 @@ static void send_cmd(char sifter_select[]) {
   app_message_out_release();
 }
 
-// TODO: Should the deinit handler be destroying the layers / windows?
-static void handle_deinit(AppContextRef c) {
+static void handle_deinit(void) {
   app_sync_deinit(&main_screen_data.sync);
+  window_destroy(main_screen_data.window);
+  scroll_layer_destroy(main_screen_data.sifter_text_scroll_layer);
+  text_layer_destroy(main_screen_data.sifter_name_layer);
+  text_layer_destroy(main_screen_data.sifter_text_layer);
+  window_destroy(sifter_menu_data.window);
+  simple_menu_layer_destroy(sifter_menu_data.simple_menu_layer);
 }
 
 void menu_select_callback(int index, void *ctx) {
