@@ -128,7 +128,7 @@ void click_config_provider(ClickConfig **config, Window *window) {
   config[BUTTON_ID_SELECT]->click.handler = (ClickHandler) select_single_click_handler;
 }
 
-void main_screen_handle_init(AppContextRef ctx) {
+void main_screen_handle_init(void) {
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
   Tuplet initial_values[] = {
@@ -137,15 +137,14 @@ void main_screen_handle_init(AppContextRef ctx) {
   };
 
   // Initialize the main screen window
-  Window* window = &main_screen_data.window;
-  window_init(window, "Pebble Sifter");
-  window_stack_push(window, true /* Animated */ );
+  main_screen_data.window = window_create();
+  window_stack_push(main_screen_data.window, true /* Animated */ );
 
   // Initialize the sifter name layer and add it to the window
-  text_layer_init(&main_screen_data.sifter_name_layer, GRect(0, 0, 144, sifter_name_layer_vert_size));
-  text_layer_set_text_alignment(&main_screen_data.sifter_name_layer, GTextAlignmentCenter);
+  main_screen_data.sifter_name_layer = text_layer_create(GRect(0, 0, 144, sifter_name_layer_vert_size));
+  text_layer_set_text_alignment(main_screen_data.sifter_name_layer, GTextAlignmentCenter);
   // TODO: This should be pulled from initial_values
-  text_layer_set_text(&main_screen_data.sifter_name_layer, "Sifter Name");
+  text_layer_set_text(main_screen_data.sifter_name_layer, "Sifter Name");
   layer_add_child(&window->layer, &main_screen_data.sifter_name_layer.layer);
 
   // Initialize the scroll layer
