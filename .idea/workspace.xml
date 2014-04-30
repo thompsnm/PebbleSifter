@@ -82,8 +82,8 @@
       <file leaf-file-name="pebble_sifter.c" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71629214" vertical-offset="540" max-vertical-offset="3105">
-              <caret line="70" column="25" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.81341106" vertical-offset="1137" max-vertical-offset="3090">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -700,12 +700,12 @@
       <updated>1382846077948</updated>
       <workItem from="1398820460293" duration="92000" />
       <workItem from="1398864482838" duration="3593000" />
-      <workItem from="1398897831633" duration="167000" />
+      <workItem from="1398897831633" duration="572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3852000" />
+    <option name="totallyTimeSpent" value="4257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -842,8 +842,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71629214" vertical-offset="540" max-vertical-offset="3105">
-          <caret line="70" column="25" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.81341106" vertical-offset="1137" max-vertical-offset="3090">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding />
         </state>
       </provider>

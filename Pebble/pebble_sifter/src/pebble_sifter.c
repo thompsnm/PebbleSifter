@@ -87,9 +87,8 @@ void menu_select_callback(int index, void *ctx) {
 
 void sifter_menu_init() {
   // Initialize the menu window
-  Window* window = &sifter_menu_data.window;
-  window_init(window, "Sifter Menu");
-  window_stack_push(window, true /* Animated */ );
+  sifter_menu_data.window = window_create();
+  window_stack_push(sifter_menu_data.window, true /* Animated */ );
 
   int num_a_items = 0;
 
