@@ -111,13 +111,13 @@ void sifter_menu_init() {
     .items = sifter_menu_data.menu_items,
   };
 
-  GRect bounds = window->layer.bounds;
+  GRect bounds = layer_get_bounds(window_get_root_layer(sifter_menu_data.window));
 
   // Initialize the simple menu layer
-  simple_menu_layer_init(&sifter_menu_data.simple_menu_layer, bounds, window, sifter_menu_data.menu_sections, 1, NULL);
+  sifter_menu_data.simple_menu_layer = simple_menu_layer_create(bounds, sifter_menu_data.window, sifter_menu_data.menu_sections, 1, NULL);
 
   // Add it to the window for display
-  layer_add_child(&window->layer, simple_menu_layer_get_layer(sifter_menu_data.simple_menu_layer));
+  layer_add_child(window_get_root_layer(sifter_menu_data.window), simple_menu_layer_get_layer(sifter_menu_data.simple_menu_layer));
 }
 
 void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
