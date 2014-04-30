@@ -178,22 +178,15 @@ void main_screen_handle_init(void) {
   app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
 }
 
-void pbl_main(void *params) {
+int main(void) {
   sifter_names[0] = "Team Trivia";
   sifter_names[1] = "Hartmann";
 
   sifter_full_names[0] = "Team Trivia Free Answer";
   sifter_full_names[1] = "Hartmann Game Status";
 
-  PebbleAppHandlers handlers = {
-    .init_handler = &main_screen_handle_init,
-    .deinit_handler = &handle_deinit,
-    .messaging_info = {
-      .buffer_sizes = {
-        .inbound = 1024,
-        .outbound = 1024,
-      }
-    }
-  };
-  app_event_loop(params, &handlers);
+  // TODO: Does .messaging_info need to be set?
+  main_screen_handle_init();
+  app_event_loop();
+  handle_deinit();
 }
