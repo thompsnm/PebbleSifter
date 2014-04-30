@@ -117,7 +117,7 @@ void sifter_menu_init() {
   simple_menu_layer_init(&sifter_menu_data.simple_menu_layer, bounds, window, sifter_menu_data.menu_sections, 1, NULL);
 
   // Add it to the window for display
-  layer_add_child(&window->layer, simple_menu_layer_get_layer(&sifter_menu_data.simple_menu_layer));
+  layer_add_child(&window->layer, simple_menu_layer_get_layer(sifter_menu_data.simple_menu_layer));
 }
 
 void select_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
