@@ -842,9 +842,9 @@ OUTPUT(/Users/nathan.thompson/Projects/PebbleSifter/Pebble/pebble_sifter/build/p
 .debug_ranges   0x0000000000000000       0x80
  .debug_ranges  0x0000000000000000       0x80 src/pebble_sifter.c.7.o
 
-.debug_line     0x0000000000000000      0x44c
- .debug_line    0x0000000000000000      0x31c src/pebble_sifter.c.7.o
- .debug_line    0x000000000000031c      0x130 appinfo.auto.c.7.o
+.debug_line     0x0000000000000000      0x44e
+ .debug_line    0x0000000000000000      0x31e src/pebble_sifter.c.7.o
+ .debug_line    0x000000000000031e      0x130 appinfo.auto.c.7.o
 
 .debug_str      0x0000000000000000      0xcbc
  .debug_str     0x0000000000000000      0xb43 src/pebble_sifter.c.7.o

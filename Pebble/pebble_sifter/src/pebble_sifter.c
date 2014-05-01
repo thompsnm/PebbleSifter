@@ -152,8 +152,10 @@ void main_screen_handle_init(void) {
   // TODO: Is the following line necessary?
   main_screen_data.sifter_text_scroll_layer = scroll_layer_create(layer_get_bounds(window_get_root_layer(main_screen_data.window)));
   main_screen_data.sifter_text_scroll_layer = scroll_layer_create(GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
-  // Looks like this doesn't play well with window_set_click_config_provider
-  // Commenting it out until I can dig into it further
+  /*
+   * TODO: Looks like this doesn't play well with window_set_click_config_provider
+   * Commenting it out until I can dig into it further
+   */
   main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
   scroll_layer_set_callbacks(main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
   scroll_layer_set_click_config_onto_window(main_screen_data.sifter_text_scroll_layer, main_screen_data.window);
@@ -173,6 +175,7 @@ void main_screen_handle_init(void) {
   scroll_layer_add_child(main_screen_data.sifter_text_scroll_layer, text_layer_get_layer(main_screen_data.sifter_text_layer));
   layer_add_child(window_get_root_layer(main_screen_data.window), scroll_layer_get_layer(main_screen_data.sifter_text_scroll_layer));
 
+  // TODO: Can this be removed?
   // Initialize select button config
 //  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
 
