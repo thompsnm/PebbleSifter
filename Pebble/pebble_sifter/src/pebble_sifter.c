@@ -132,7 +132,7 @@ void main_screen_handle_init(void) {
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_PEBBLE_NAME_KEY, "Sifter Name"),
-    TupletCString(SIFTER_TEXT_KEY, "Sifted Text"),
+    TupletCString(SIFTER_TEXT_KEY, "Sifted Text.\nPress the Select button to choose from a list of sifters."),
   };
 
   // Open AppMessage to transfers

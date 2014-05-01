@@ -604,7 +604,7 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
  .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.7.o
                 0x0000000000000000                __pbl_app_info
 
-.text           0x0000000000000084      0x5ee
+.text           0x0000000000000084      0x63a
  *(.text)
  .text          0x0000000000000084       0x14 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  *(.text.*)
@@ -626,175 +626,176 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
                 0x000000000000023c        0x4 src/pebble_sifter.c.7.o
                 0x000000000000023c                select_single_click_handler
  .text.main_screen_handle_init
-                0x0000000000000240      0x188 src/pebble_sifter.c.7.o
+                0x0000000000000240      0x18c src/pebble_sifter.c.7.o
                 0x0000000000000240                main_screen_handle_init
  .text.startup.main
-                0x00000000000003c8       0x8c src/pebble_sifter.c.7.o
-                0x00000000000003c8                main
+                0x00000000000003cc       0x8c src/pebble_sifter.c.7.o
+                0x00000000000003cc                main
  .text.app_event_loop
-                0x0000000000000454        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000454                app_event_loop
+                0x0000000000000458        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000458                app_event_loop
  .text.app_message_open
-                0x0000000000000460        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000460                app_message_open
+                0x0000000000000464        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000464                app_message_open
  .text.app_sync_deinit
-                0x000000000000046c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000046c                app_sync_deinit
+                0x0000000000000470        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000470                app_sync_deinit
  .text.app_sync_init
-                0x0000000000000478        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000478                app_sync_init
+                0x000000000000047c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000047c                app_sync_init
  .text.dict_write_end
-                0x0000000000000484        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000484                dict_write_end
+                0x0000000000000488        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000488                dict_write_end
  .text.dict_write_tuplet
-                0x0000000000000490        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000490                dict_write_tuplet
+                0x0000000000000494        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000494                dict_write_tuplet
  .text.layer_add_child
-                0x000000000000049c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000049c                layer_add_child
+                0x00000000000004a0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004a0                layer_add_child
  .text.layer_get_bounds
-                0x00000000000004a8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004a8                layer_get_bounds
- .text.memset   0x00000000000004b4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004b4                memset
+                0x00000000000004ac        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004ac                layer_get_bounds
+ .text.memset   0x00000000000004b8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004b8                memset
  .text.scroll_layer_add_child
-                0x00000000000004c0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004c0                scroll_layer_add_child
+                0x00000000000004c4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004c4                scroll_layer_add_child
  .text.scroll_layer_create
-                0x00000000000004cc        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004cc                scroll_layer_create
+                0x00000000000004d0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004d0                scroll_layer_create
  .text.scroll_layer_destroy
-                0x00000000000004d8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004d8                scroll_layer_destroy
+                0x00000000000004dc        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004dc                scroll_layer_destroy
  .text.scroll_layer_get_layer
-                0x00000000000004e4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004e4                scroll_layer_get_layer
+                0x00000000000004e8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004e8                scroll_layer_get_layer
  .text.scroll_layer_set_callbacks
-                0x00000000000004f0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004f0                scroll_layer_set_callbacks
+                0x00000000000004f4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000004f4                scroll_layer_set_callbacks
  .text.scroll_layer_set_click_config_onto_window
-                0x00000000000004fc        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000004fc                scroll_layer_set_click_config_onto_window
+                0x0000000000000500        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000500                scroll_layer_set_click_config_onto_window
  .text.scroll_layer_set_content_size
-                0x0000000000000508        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000508                scroll_layer_set_content_size
+                0x000000000000050c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000050c                scroll_layer_set_content_size
  .text.simple_menu_layer_create
-                0x0000000000000514        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000514                simple_menu_layer_create
+                0x0000000000000518        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000518                simple_menu_layer_create
  .text.simple_menu_layer_destroy
-                0x0000000000000520        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000520                simple_menu_layer_destroy
+                0x0000000000000524        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000524                simple_menu_layer_destroy
  .text.simple_menu_layer_get_layer
-                0x000000000000052c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000052c                simple_menu_layer_get_layer
- .text.strlen   0x0000000000000538        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000538                strlen
+                0x0000000000000530        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000530                simple_menu_layer_get_layer
+ .text.strlen   0x000000000000053c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000053c                strlen
  .text.text_layer_create
-                0x0000000000000544        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000544                text_layer_create
+                0x0000000000000548        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000548                text_layer_create
  .text.text_layer_destroy
-                0x0000000000000550        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000550                text_layer_destroy
+                0x0000000000000554        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000554                text_layer_destroy
  .text.text_layer_get_content_size
-                0x000000000000055c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000055c                text_layer_get_content_size
+                0x0000000000000560        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000560                text_layer_get_content_size
  .text.text_layer_get_layer
-                0x0000000000000568        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000568                text_layer_get_layer
+                0x000000000000056c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000056c                text_layer_get_layer
  .text.text_layer_set_size
-                0x0000000000000574        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000574                text_layer_set_size
+                0x0000000000000578        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000578                text_layer_set_size
  .text.text_layer_set_text
-                0x0000000000000580        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000580                text_layer_set_text
+                0x0000000000000584        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000584                text_layer_set_text
  .text.text_layer_set_text_alignment
-                0x000000000000058c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000058c                text_layer_set_text_alignment
+                0x0000000000000590        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000590                text_layer_set_text_alignment
  .text.window_create
-                0x0000000000000598        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000598                window_create
+                0x000000000000059c        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000059c                window_create
  .text.window_destroy
-                0x00000000000005a4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005a4                window_destroy
+                0x00000000000005a8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005a8                window_destroy
  .text.window_get_root_layer
-                0x00000000000005b0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005b0                window_get_root_layer
+                0x00000000000005b4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005b4                window_get_root_layer
  .text.window_stack_pop
-                0x00000000000005bc        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005bc                window_stack_pop
+                0x00000000000005c0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005c0                window_stack_pop
  .text.window_stack_push
-                0x00000000000005c8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005c8                window_stack_push
+                0x00000000000005cc        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005cc                window_stack_push
  .text.app_message_outbox_begin
-                0x00000000000005d4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005d4                app_message_outbox_begin
+                0x00000000000005d8        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005d8                app_message_outbox_begin
  .text.app_message_outbox_send
-                0x00000000000005e0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005e0                app_message_outbox_send
+                0x00000000000005e4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005e4                app_message_outbox_send
  .text.window_single_click_subscribe
-                0x00000000000005ec        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000005ec                window_single_click_subscribe
+                0x00000000000005f0        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000005f0                window_single_click_subscribe
  *(.rodata)
- .rodata        0x00000000000005f8       0x10 src/pebble_sifter.c.7.o
+ .rodata        0x00000000000005fc       0x10 src/pebble_sifter.c.7.o
  *(.rodata*)
  .rodata.max_text_bounds.6482
-                0x0000000000000608        0x8 src/pebble_sifter.c.7.o
+                0x000000000000060c        0x8 src/pebble_sifter.c.7.o
  .rodata.str1.1
-                0x0000000000000610       0x5a src/pebble_sifter.c.7.o
+                0x0000000000000614       0xa1 src/pebble_sifter.c.7.o
+ *fill*         0x00000000000006b5        0x1 
  .rodata.max_text_bounds.6444
-                0x000000000000066a        0x8 src/pebble_sifter.c.7.o
+                0x00000000000006b6        0x8 src/pebble_sifter.c.7.o
 
-.glue_7         0x0000000000000674        0x0
+.glue_7         0x00000000000006c0        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000000674        0x0
+.glue_7t        0x00000000000006c0        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000000674        0x0
+.vfp11_veneer   0x00000000000006c0        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000000674        0x0
+.v4_bx          0x00000000000006c0        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000000674        0x0
+.iplt           0x00000000000006c0        0x0
  .iplt          0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.rel.dyn        0x0000000000000674        0x0
+.rel.dyn        0x00000000000006c0        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .rel.got       0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.data           0x0000000000000674        0x4
+.data           0x00000000000006c0        0x4
  *(.data)
- .data          0x0000000000000674        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
- .data          0x0000000000000674        0x4 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000000674                __dso_handle
- .data          0x0000000000000678        0x0 src/pebble_sifter.c.7.o
- .data          0x0000000000000678        0x0 appinfo.auto.c.7.o
- .data          0x0000000000000678        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
- .data          0x0000000000000678        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
- .data          0x0000000000000678        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
+ .data          0x00000000000006c0        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
+ .data          0x00000000000006c0        0x4 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x00000000000006c0                __dso_handle
+ .data          0x00000000000006c4        0x0 src/pebble_sifter.c.7.o
+ .data          0x00000000000006c4        0x0 appinfo.auto.c.7.o
+ .data          0x00000000000006c4        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+ .data          0x00000000000006c4        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
+ .data          0x00000000000006c4        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
  *(.data.*)
 
-.igot.plt       0x0000000000000678        0x0
+.igot.plt       0x00000000000006c4        0x0
  .igot.plt      0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got            0x0000000000000678        0x8
- .got           0x0000000000000678        0x8 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+.got            0x00000000000006c4        0x8
+ .got           0x00000000000006c4        0x8 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got.plt        0x0000000000000680        0xc
- .got.plt       0x0000000000000680        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000000680                _GLOBAL_OFFSET_TABLE_
+.got.plt        0x00000000000006cc        0xc
+ .got.plt       0x00000000000006cc        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x00000000000006cc                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x000000000000068c       0xfc
+.bss            0x00000000000006d8       0xfc
  *(.bss)
  *(.bss.*)
  .bss.main_screen_data
-                0x000000000000068c       0xb8 src/pebble_sifter.c.7.o
+                0x00000000000006d8       0xb8 src/pebble_sifter.c.7.o
  .bss.sifter_menu_data
-                0x0000000000000744       0x34 src/pebble_sifter.c.7.o
- COMMON         0x0000000000000778       0x10 src/pebble_sifter.c.7.o
-                0x0000000000000778                sifter_full_names
-                0x0000000000000780                sifter_names
+                0x0000000000000790       0x34 src/pebble_sifter.c.7.o
+ COMMON         0x00000000000007c4       0x10 src/pebble_sifter.c.7.o
+                0x00000000000007c4                sifter_full_names
+                0x00000000000007cc                sifter_names
 
 DISCARD
  libc.a(*)
@@ -827,9 +828,9 @@ OUTPUT(/Users/nathan.thompson/Projects/PebbleSifter/Pebble/pebble_sifter/build/p
  .comment       0x0000000000000000       0x4f appinfo.auto.c.7.o
  .comment       0x0000000000000000       0x4f /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x1797
- .debug_info    0x0000000000000000     0x146b src/pebble_sifter.c.7.o
- .debug_info    0x000000000000146b      0x32c appinfo.auto.c.7.o
+.debug_info     0x0000000000000000     0x178c
+ .debug_info    0x0000000000000000     0x1460 src/pebble_sifter.c.7.o
+ .debug_info    0x0000000000001460      0x32c appinfo.auto.c.7.o
 
 .debug_abbrev   0x0000000000000000      0x44c
  .debug_abbrev  0x0000000000000000      0x398 src/pebble_sifter.c.7.o
@@ -847,9 +848,9 @@ OUTPUT(/Users/nathan.thompson/Projects/PebbleSifter/Pebble/pebble_sifter/build/p
 .debug_ranges   0x0000000000000000       0x80
  .debug_ranges  0x0000000000000000       0x80 src/pebble_sifter.c.7.o
 
-.debug_line     0x0000000000000000      0x455
- .debug_line    0x0000000000000000      0x325 src/pebble_sifter.c.7.o
- .debug_line    0x0000000000000325      0x130 appinfo.auto.c.7.o
+.debug_line     0x0000000000000000      0x456
+ .debug_line    0x0000000000000000      0x326 src/pebble_sifter.c.7.o
+ .debug_line    0x0000000000000326      0x130 appinfo.auto.c.7.o
 
 .debug_str      0x0000000000000000      0xce8
  .debug_str     0x0000000000000000      0xb6f src/pebble_sifter.c.7.o
