@@ -6,6 +6,10 @@ const int header_display_height = 16;
 
 const int sifter_name_layer_vert_size = 20;
 
+const int inbound_size = 64;
+
+const int outbound_size = 64;
+
 char *sifter_names[2];
 
 char *sifter_full_names[2];
@@ -181,6 +185,7 @@ void main_screen_handle_init(void) {
 
   // Initialize AppSync
   app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
+  app_message_open(inbound_size, outbound_size);
 }
 
 int main(void) {
