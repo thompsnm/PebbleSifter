@@ -14,7 +14,12 @@
     <list default="true" id="bd51c051-3a84-4783-956b-ffd6ced47b96" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/app_resources.pbpack.manifest" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/app_resources.pbpack.manifest" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/app_resources.pbpack" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/app_resources.pbpack" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.bin" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.elf" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.elf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.raw.bin" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.raw.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble_sifter.pbw" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble_sifter.pbw" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/config.log" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/config.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.map" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/build/pebble-app.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c" afterPath="$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -82,8 +87,8 @@
       <file leaf-file-name="pebble_sifter.c" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10349854" vertical-offset="1234" max-vertical-offset="2970">
-              <caret line="87" column="21" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="21" />
+            <state vertical-scroll-proportion="1.0102041" vertical-offset="1902" max-vertical-offset="3000">
+              <caret line="173" column="73" selection-start-line="173" selection-start-column="73" selection-end-line="173" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -700,12 +705,12 @@
       <updated>1382846077948</updated>
       <workItem from="1398820460293" duration="92000" />
       <workItem from="1398864482838" duration="3593000" />
-      <workItem from="1398897831633" duration="3302000" />
+      <workItem from="1398897831633" duration="3981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6987000" />
+    <option name="totallyTimeSpent" value="7666000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -842,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pebble/pebble_sifter/src/pebble_sifter.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10349854" vertical-offset="1234" max-vertical-offset="2970">
-          <caret line="87" column="21" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="21" />
+        <state vertical-scroll-proportion="1.0102041" vertical-offset="1902" max-vertical-offset="3000">
+          <caret line="173" column="73" selection-start-line="173" selection-start-column="73" selection-end-line="173" selection-end-column="73" />
           <folding />
         </state>
       </provider>
