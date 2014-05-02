@@ -740,8 +740,7 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
  .rodata.max_text_bounds.6482
                 0x000000000000060c        0x8 src/pebble_sifter.c.7.o
  .rodata.str1.1
-                0x0000000000000614       0xa1 src/pebble_sifter.c.7.o
- *fill*         0x00000000000006b5        0x1 
+                0x0000000000000614       0xa2 src/pebble_sifter.c.7.o
  .rodata.max_text_bounds.6444
                 0x00000000000006b6        0x8 src/pebble_sifter.c.7.o
 
@@ -828,9 +827,9 @@ OUTPUT(/Users/nathan.thompson/Projects/PebbleSifter/Pebble/pebble_sifter/build/p
  .comment       0x0000000000000000       0x4f appinfo.auto.c.7.o
  .comment       0x0000000000000000       0x4f /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x178c
- .debug_info    0x0000000000000000     0x1460 src/pebble_sifter.c.7.o
- .debug_info    0x0000000000001460      0x32c appinfo.auto.c.7.o
+.debug_info     0x0000000000000000     0x178e
+ .debug_info    0x0000000000000000     0x1462 src/pebble_sifter.c.7.o
+ .debug_info    0x0000000000001462      0x32c appinfo.auto.c.7.o
 
 .debug_abbrev   0x0000000000000000      0x44c
  .debug_abbrev  0x0000000000000000      0x398 src/pebble_sifter.c.7.o

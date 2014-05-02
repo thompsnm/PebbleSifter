@@ -3,8 +3,8 @@
 const int vert_scroll_text_padding = 4;
 const int header_display_height = 16;
 const int sifter_name_layer_vert_size = 20;
-const int inbound_size = 64;
-const int outbound_size = 64;
+const int inbound_size = 512;
+const int outbound_size = 512;
 char *sifter_names[2];
 char *sifter_full_names[2];
 
@@ -132,7 +132,7 @@ void main_screen_handle_init(void) {
 
   Tuplet initial_values[] = {
     TupletCString(SIFTER_PEBBLE_NAME_KEY, "Sifter Name"),
-    TupletCString(SIFTER_TEXT_KEY, "Sifted Text.\nPress the Select button to choose from a list of sifters."),
+    TupletCString(SIFTER_TEXT_KEY, "Sifted Text.\n\nPress the Select button to choose from a list of sifters."),
   };
 
   // Open AppMessage to transfers
