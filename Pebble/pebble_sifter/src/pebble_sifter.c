@@ -42,8 +42,6 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
     text_layer_set_text(main_screen_data.sifter_name_layer, new_tuple->value->cstring);
     break;
   case SIFTER_TEXT_KEY:
-    // TODO: Is the following line necessary?
-    scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
     text_layer_set_text(main_screen_data.sifter_text_layer, new_tuple->value->cstring);
     GSize max_size = text_layer_get_content_size(main_screen_data.sifter_text_layer);
     text_layer_set_size(main_screen_data.sifter_text_layer, max_size);
@@ -150,13 +148,7 @@ void main_screen_handle_init(void) {
   layer_add_child(window_get_root_layer(main_screen_data.window), text_layer_get_layer(main_screen_data.sifter_name_layer));
 
   // Initialize the scroll layer
-  // TODO: Is the following line necessary?
-  main_screen_data.sifter_text_scroll_layer = scroll_layer_create(layer_get_bounds(window_get_root_layer(main_screen_data.window)));
   main_screen_data.sifter_text_scroll_layer = scroll_layer_create(GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
-  /*
-   * TODO: Looks like this doesn't play well with window_set_click_config_provider
-   * Commenting it out until I can dig into it further
-   */
   main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
   scroll_layer_set_callbacks(main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
   scroll_layer_set_click_config_onto_window(main_screen_data.sifter_text_scroll_layer, main_screen_data.window);
@@ -176,10 +168,6 @@ void main_screen_handle_init(void) {
   scroll_layer_add_child(main_screen_data.sifter_text_scroll_layer, text_layer_get_layer(main_screen_data.sifter_text_layer));
   layer_add_child(window_get_root_layer(main_screen_data.window), scroll_layer_get_layer(main_screen_data.sifter_text_scroll_layer));
 
-  // TODO: Can this be removed?
-  // Initialize select button config
-//  window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
-
   // Initialize AppSync
   app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
 }
@@ -191,7 +179,6 @@ int main(void) {
   sifter_full_names[0] = "Team Trivia Free Answer";
   sifter_full_names[1] = "Hartmann Game Status";
 
-  // TODO: Does .messaging_info need to be set?
   main_screen_handle_init();
   app_event_loop();
   handle_deinit();
