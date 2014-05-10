@@ -11,5 +11,5 @@ public class Constants {
 
 	public static final int HANDSHAKE = 0x3;
 	
-	public static final int SIFTER_PEBBLE_MENU_NAME = 0x4
+	public static final int SIFTER_PEBBLE_MENU_NAME = 0x4;
 }
