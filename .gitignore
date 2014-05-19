@@ -1,5 +1,4 @@
-# Ignore .idea directory
-.idea
-
-# Ignore .gradle directory
 .gradle
+/local.properties
+/.idea/workspace.xml
+.DS_Store
