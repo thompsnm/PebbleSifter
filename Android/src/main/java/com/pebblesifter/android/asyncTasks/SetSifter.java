@@ -40,7 +40,7 @@ public class SetSifter extends AsyncTask<PebbleSifter, Integer, PebbleSifter> {
             siftedTextString = sifter.sift();
         } catch (Exception e) {
             siftedTextString = "ERROR: Exception occurred while sifting text.";
-            Log.e("Sift", e.toString());
+            Log.e("Sift Exception: ", e.toString());
         }
 
         // Update Android views
