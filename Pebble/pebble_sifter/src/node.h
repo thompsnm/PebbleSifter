@@ -11,4 +11,4 @@ void freeNodes(struct node *root);
 
 struct node* getNodeAtIndex(struct node *root, int index);
 
-size_t size(struct node *root);
+int size(struct node *root);

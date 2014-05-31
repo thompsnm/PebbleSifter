@@ -2,6 +2,7 @@ package com.pebblesifter.android;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Button;
 
 import com.pebblesifter.android.asyncTasks.DrawApp;
@@ -20,18 +21,28 @@ public class SifterDataReceiver extends PebbleKit.PebbleDataReceiver {
 
   @Override
   public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
-    if (data.getInteger(Constants.HANDSHAKE) == 1) {
+    if (data.getInteger(Constants.HANDSHAKE) != null) {
       PebbleKit.sendAckToPebble(context, transactionId);
 
       // Send sifter pebble names to Pebble app
-      for (PebbleSifter sifter : DrawApp.sifters) {
-        PebbleDictionary dictionary = new PebbleDictionary();
-        dictionary.addString(Constants.SIFTER_FULL_NAME, sifter.getFullName());
-        dictionary.addString(Constants.SIFTER_PEBBLE_MENU_NAME, sifter.getPebbleName());
-        PebbleKit.sendDataToPebble(context, Constants.PEBBLE_SIFTER_UUID, dictionary);
-      }
+      Log.i("Handshake", "Sending sifters to watch");
+      PebbleDictionary dictionary = new PebbleDictionary();
+      dictionary.addString(Constants.SIFTER_FULL_NAME, DrawApp.sifters.get(0).getFullName());
+      dictionary.addString(Constants.SIFTER_PEBBLE_MENU_NAME, DrawApp.sifters.get(0).getPebbleName());
+//      for (PebbleSifter sifter : DrawApp.sifters) {
+//        dictionary.addString(Constants.SIFTER_FULL_NAME, sifter.getFullName());
+//        dictionary.addString(Constants.SIFTER_PEBBLE_MENU_NAME, sifter.getPebbleName());
+//      }
+      PebbleKit.sendDataToPebble(context, Constants.PEBBLE_SIFTER_UUID, dictionary);
+
+      Log.i("Handshake", "Sending handshakeComplete to watch");
+      PebbleDictionary handshakeComplete = new PebbleDictionary();
+      handshakeComplete.addInt32(Constants.HANDSHAKE, 1);
+      PebbleKit.sendDataToPebble(context, Constants.PEBBLE_SIFTER_UUID, handshakeComplete);
     } else {
+      Log.i("Sifter Select", "Sifter was selected");
       String newSifterFullName = data.getString(Constants.SIFTER_FULL_NAME);
+      Log.i("Sifter Select", "Sifter Full Name: " + newSifterFullName);
 
       PebbleKit.sendAckToPebble(context, transactionId);
 

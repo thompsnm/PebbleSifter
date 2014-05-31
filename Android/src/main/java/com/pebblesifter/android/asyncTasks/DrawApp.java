@@ -12,12 +12,12 @@ import com.pebblesifter.android.R;
 import com.pebblesifter.android.sifters.PebbleSifter;
 import com.pebblesifter.android.sifters.exampleSifters.HartmannGameStatusSifter;
 import com.pebblesifter.android.sifters.exampleSifters.TeamTriviaAnswerSifter;
+import com.pebblesifter.android.sifters.personalSifters.*;
 
 import java.util.ArrayList;
 
 public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
 
-    // TODO: Yeah, this is totally the wrong way to do things
     public static ArrayList<PebbleSifter> sifters = new ArrayList<PebbleSifter>();
     Activity activity;
 
