@@ -24,5 +24,6 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile 'org.jsoup:jsoup:1.7.2'
+    compile 'org.projectlombok:lombok:1.14.2'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

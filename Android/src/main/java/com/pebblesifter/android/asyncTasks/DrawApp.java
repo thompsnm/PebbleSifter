@@ -1,14 +1,24 @@
 package com.pebblesifter.android.asyncTasks;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.getpebble.android.kit.PebbleKit;
+import com.getpebble.android.kit.util.PebbleDictionary;
+import com.pebblesifter.android.Constants;
 import com.pebblesifter.android.MainActivity;
 import com.pebblesifter.android.R;
+import com.pebblesifter.android.dataReceivers.DefaultAckReceiver;
+import com.pebblesifter.android.dataReceivers.DefaultNackReceiver;
+import com.pebblesifter.android.dataReceivers.SifterDataReceiver;
 import com.pebblesifter.android.sifters.PebbleSifter;
 import com.pebblesifter.android.sifters.exampleSifters.HartmannGameStatusSifter;
 import com.pebblesifter.android.sifters.exampleSifters.TeamTriviaAnswerSifter;
@@ -18,57 +28,73 @@ import java.util.ArrayList;
 
 public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
 
-    public static ArrayList<PebbleSifter> sifters = new ArrayList<PebbleSifter>();
-    Activity activity;
+  private final int MAX_RETRIES = 3;
 
-    public DrawApp(Activity activity) {
-        this.activity = activity;
+  Activity activity;
+  private ProgressDialog dialog;
+
+  public DrawApp(Activity activity) {
+    this.activity = activity;
+    dialog = new ProgressDialog(activity);
+  }
+
+  @Override
+  protected void onPreExecute() {
+    this.dialog.setMessage("Sifting data...");
+    this.dialog.show();
+  }
+
+  @Override
+  protected ArrayList<String> doInBackground(Object... objects) {
+    // As new sifters are implemented, add them here.
+    MainActivity.sifters.add(new TeamTriviaAnswerSifter());
+    MainActivity.sifters.add(new HartmannGameStatusSifter());
+
+    ArrayList<String> sifterNames = new ArrayList<String>();
+
+    for (PebbleSifter sifter : MainActivity.sifters) {
+      sifterNames.add(sifter.getFullName());
     }
 
-    @Override
-    protected ArrayList<String> doInBackground(Object... objects) {
-        // As new sifters are implemented, add them here.
-        sifters.add(new TeamTriviaAnswerSifter());
-        sifters.add(new HartmannGameStatusSifter());
+    return sifterNames;
+  }
 
-        ArrayList<String> sifterNames = new ArrayList<String>();
-
-        for (PebbleSifter sifter : sifters) {
-            sifterNames.add(sifter.getFullName());
-        }
-
-        return sifterNames;
+  @Override
+  protected void onPostExecute(ArrayList<String> sifterNames) {
+    if (dialog.isShowing()) {
+      dialog.dismiss();
     }
 
-    @Override
-    protected void onPostExecute(ArrayList<String> sifterNames) {
-        SetSifter setSifter = new SetSifter(activity);
-        setSifter.execute(sifters.get(0));
+    SetSifter setSifter = new SetSifter(activity);
+    setSifter.execute(MainActivity.sifters.get(0));
 
-        for (int i = 0; i < sifterNames.size(); i++) {
-            final PebbleSifter sifter = sifters.get(i);
+    for (int i = 0; i < sifterNames.size(); i++) {
+      final PebbleSifter sifter = MainActivity.sifters.get(i);
 
-            Button sifterButton = new Button(activity);
-            sifterButton.setText(sifterNames.get(i));
+      Button sifterButton = new Button(activity);
+      sifterButton.setText(sifterNames.get(i));
 
-            View.OnClickListener listener = new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    SetSifter setSifter = new SetSifter(activity);
-                    setSifter.execute(sifter);
-                }
-            };
-
-            sifterButton.setOnClickListener(listener);
-            MainActivity.sifterButtons.add(sifterButton);
+      View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          SetSifter setSifter = new SetSifter(activity);
+          setSifter.execute(sifter);
         }
+      };
 
-        LinearLayout linearLayout = (LinearLayout)activity.findViewById(R.id.button_layout);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-
-        for (Button sifterButton : MainActivity.sifterButtons) {
-            linearLayout.addView(sifterButton);
-        }
+      sifterButton.setOnClickListener(listener);
+      MainActivity.sifterButtons.add(sifterButton);
     }
+
+    LinearLayout linearLayout = (LinearLayout)activity.findViewById(R.id.button_layout);
+    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+
+    for (Button sifterButton : MainActivity.sifterButtons) {
+      linearLayout.addView(sifterButton);
+    }
+
+    SendSifters sendSifters = new SendSifters(activity, MainActivity.sifters);
+    sendSifters.execute();
+  }
 }

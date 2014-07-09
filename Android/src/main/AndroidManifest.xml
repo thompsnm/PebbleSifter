@@ -21,7 +21,7 @@
         </activity>
 
         <receiver
-            android:name="com.pebblesifter.android.SifterDataReceiver">
+            android:name=".dataReceivers.SifterDataReceiver">
             <intent-filter>
                 <action android:name="com.getpebble.action.app.RECEIVE"/>
             </intent-filter>

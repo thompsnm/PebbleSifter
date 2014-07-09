@@ -33,12 +33,15 @@ enum {
   SIFTER_PEBBLE_NAME_KEY = 0x0,        // TUPLE_CSTRING
   SIFTER_TEXT_KEY = 0x1,               // TUPLE_CSTRING
   SIFTER_FULL_NAME_KEY = 0x2,          // TUPLE_CSTRING
-  HANDSHAKE_KEY = 0x3,                 // TUPLE_INTEGER
-  SIFTER_PEBBLE_MENU_NAME_KEY = 0x4,   // TUPLE_CSTRING
+  SIFTER_PEBBLE_MENU_NAME_KEY = 0x3,   // TUPLE_CSTRING
+  HANDSHAKE_INIT_KEY = 0x4,            // TUPLE_INTEGER
+  HANDSHAKE_SUCCESS_KEY = 0x5,         // TUPLE_INTEGER
+  HANDSHAKE_FAIL_KEY = 0x5,            // TUPLE_INTEGER
 };
 
 // TODO: Error handling
 static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
+    app_log(APP_LOG_LEVEL_WARNING, __FILE__, __LINE__, "Error in AppSync.");
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
@@ -72,7 +75,7 @@ static void send_sifter_select_cmd(const char sifter_select[]) {
 }
 
 static void send_handshake_cmd() {
-  Tuplet value = TupletInteger(HANDSHAKE_KEY, 1);
+  Tuplet value = TupletInteger(HANDSHAKE_INIT_KEY, 1);
 
   DictionaryIterator *iter;
   app_message_outbox_begin(&iter);
@@ -87,35 +90,24 @@ static void send_handshake_cmd() {
 }
 
 static void receive_handshake_cmd(DictionaryIterator *iter, void *context) {
-  app_log(APP_LOG_LEVEL_DEBUG,
-                  __FILE__,
-                  __LINE__,
-                  "Calling receive_handshake_cmd");
+  app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Calling receive_handshake_cmd");
+
   Tuple *menu_name_tuple = dict_find(iter, SIFTER_PEBBLE_MENU_NAME_KEY);
   if (menu_name_tuple) {
-    app_log(APP_LOG_LEVEL_DEBUG,
-                    __FILE__,
-                    __LINE__,
-                    "Found SIFTER_PEBBLE_MENU_NAME_KEY with value %s and length %d",
-                    menu_name_tuple->value->cstring,
-                    strlen(menu_name_tuple->value->cstring));
-    strncpy(sifter_names[0], menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found SIFTER_PEBBLE_MENU_NAME_KEY with value %s and length %d", menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
+    strncpy(sifter_names[num_sifters], menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
   }
 
   Tuple *full_name_tuple = dict_find(iter, SIFTER_FULL_NAME_KEY);
   if (full_name_tuple) {
-    app_log(APP_LOG_LEVEL_DEBUG,
-                    __FILE__,
-                    __LINE__,
-                    "Found SIFTER_FULL_NAME_KEY with value %s and length %d",
-                    full_name_tuple->value->cstring,
-                    strlen(full_name_tuple->value->cstring));
-    strncpy(sifter_full_names[0], full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found SIFTER_FULL_NAME_KEY with value %s and length %d", full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
+    strncpy(sifter_full_names[num_sifters], full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
     num_sifters++;
   }
 
-//  Tuple *handshake_tuple = dict_find(iter, HANDSHAKE_KEY);
-//  if (handshake_tuple) {
+  Tuple *handshake_stop_tuple = dict_find(iter, HANDSHAKE_SUCCESS_KEY);
+  if (handshake_stop_tuple) {
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found HANDSHAKE_SUCCESS_KEY");
     app_message_register_inbox_received(NULL);
 
     Tuplet initial_values[] = {
@@ -124,12 +116,7 @@ static void receive_handshake_cmd(DictionaryIterator *iter, void *context) {
     };
 
     app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
-    app_log(APP_LOG_LEVEL_DEBUG,
-                    __FILE__,
-                    __LINE__,
-                    "sifter_names[0]: %s",
-                    sifter_names[0]);
-//  }
+  }
 }
 
 static void handle_deinit(void) {
@@ -145,20 +132,12 @@ static void handle_deinit(void) {
 }
 
 void menu_select_callback(int index, void *ctx) {
-    app_log(APP_LOG_LEVEL_DEBUG,
-                    __FILE__,
-                    __LINE__,
-                    "sifter_names[0]: %s",
-                    sifter_names[0]);
   window_stack_pop(sifter_menu_data.window);
   send_sifter_select_cmd(sifter_full_names[index]);
 }
 
 void sifter_menu_init() {
-    app_log(APP_LOG_LEVEL_DEBUG,
-                    __FILE__,
-                    __LINE__,
-                    "Calling sifter_menu_init");
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Calling sifter_menu_init");
   // Initialize the menu window
   sifter_menu_data.window = window_create();
   window_stack_push(sifter_menu_data.window, true /* Animated */ );
@@ -234,6 +213,8 @@ void main_screen_handle_init(void) {
 
   // Initialize AppSync
   app_message_register_inbox_received((AppMessageInboxReceived) receive_handshake_cmd);
+
+  // Initialize handshake
   send_handshake_cmd();
 }
 
