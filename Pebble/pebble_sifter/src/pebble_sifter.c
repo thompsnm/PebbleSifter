@@ -1,5 +1,4 @@
 #include <pebble.h>
-#include "node.h"
 
 #define max_sifters 10
 #define max_sifter_name 32
