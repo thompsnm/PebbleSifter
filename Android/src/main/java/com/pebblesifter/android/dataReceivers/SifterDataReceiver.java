@@ -31,12 +31,12 @@ public class SifterDataReceiver extends PebbleKit.PebbleDataReceiver {
     Intent i = new Intent(context, MainActivity.class);
     i.addFlags(
         Intent.FLAG_ACTIVITY_NEW_TASK   // If set, this activity will become the start of a new task on this history stack
-            | Intent.FLAG_ACTIVITY_CLEAR_TOP  // If set, and the activity being launched is already running in the current task, then instead of launching a new instance of that activity, all of the other activities on top of it will be closed and this Intent will be delivered to the (now on top) old activity as a new Intent
             | Intent.FLAG_ACTIVITY_SINGLE_TOP // If set, the activity will not be launched if it is already running at the top of the history stack
     );
 
     if (data.getInteger(Constants.HANDSHAKE_INIT) != null) {
       // Send sifter pebble names to Pebble app
+      Log.i("SifterDataReceiver", "Adding extra: handshake");
       i.putExtra("handshake", true);
     } else {
       Log.i("SifterDataReceiver", "Sifter was selected");
@@ -50,6 +50,7 @@ public class SifterDataReceiver extends PebbleKit.PebbleDataReceiver {
         }
       }
 
+      Log.i("SifterDataReceiver", "Adding extra: newSifter");
       i.putExtra("newSifter", newSifterFullName);
     }
 

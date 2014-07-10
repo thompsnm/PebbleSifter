@@ -3,6 +3,7 @@ package com.pebblesifter.android;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Button;
 
@@ -21,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    Log.i("MainActivity", "Called onCreate");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
@@ -30,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
 
   @Override
   protected void onNewIntent(Intent intent) {
+    Log.i("MainActivity", "Called onNewIntent");
+    setIntent(intent);
     if (intent.hasExtra("handshake")) {
       SendSifters sendSifters = new SendSifters(this, sifters);
       sendSifters.execute();

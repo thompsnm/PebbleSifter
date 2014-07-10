@@ -37,15 +37,15 @@ public class SendSifters extends AsyncTask<Object, Integer, Void> {
   @Override
   protected Void doInBackground(Object... params) {
 
-    Log.i("MainActivity", "Checking for extras");
+    Log.i("SendSifters", "Checking for extras");
     Bundle extras = activity.getIntent().getExtras();
     if (extras != null) {
-      Log.i("MainActivity", "Extras found");
+      Log.i("SendSifters", "Extras found");
       if (extras.getBoolean("handshake", false)) {
-        Log.i("MainActivity", "handshake found");
+        Log.i("SendSifters", "handshake found");
         sendSifters();
       } else if (extras.getString("newSifter") != null) {
-        Log.i("MainActivity", "newSifter found with value " + extras.getString("newSifter"));
+        Log.i("SendSifters", "newSifter found with value " + extras.getString("newSifter"));
         String newSifterFullName = extras.getString("newSifter");
         for (Button sifterButton : MainActivity.sifterButtons) {
           if (sifterButton.getText().equals(newSifterFullName)) {
@@ -54,6 +54,8 @@ public class SendSifters extends AsyncTask<Object, Integer, Void> {
           }
         }
       }
+    } else {
+      Log.i("SendSifters", "No extras found");
     }
 
     return null;
