@@ -39,7 +39,6 @@ enum {
   HANDSHAKE_FAIL_KEY = 0x5,            // TUPLE_INTEGER
 };
 
-// TODO: Error handling
 static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
     app_log(APP_LOG_LEVEL_WARNING, __FILE__, __LINE__, "Error in AppSync.");
 }
@@ -108,13 +107,21 @@ static void receive_handshake_cmd(DictionaryIterator *iter, void *context) {
   Tuple *handshake_stop_tuple = dict_find(iter, HANDSHAKE_SUCCESS_KEY);
   if (handshake_stop_tuple) {
     app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found HANDSHAKE_SUCCESS_KEY");
+
+    // De-register message handler
     app_message_register_inbox_received(NULL);
 
+    // Update message displayed on screen
+    text_layer_set_text(main_screen_data.sifter_name_layer, "Ready!");
+    text_layer_set_text(main_screen_data.sifter_text_layer, "Please wait while the sifter list is populated.");
+
+    // Set initial values for app sync
     Tuplet initial_values[] = {
-      TupletCString(SIFTER_PEBBLE_NAME_KEY, "Sifter Name"),
-      TupletCString(SIFTER_TEXT_KEY, "Sifted Text"),
+      TupletCString(SIFTER_PEBBLE_NAME_KEY, "Ready!"),
+      TupletCString(SIFTER_TEXT_KEY, "Please wait while the sifter list is populated."),
     };
 
+    // Initialize app sync
     app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
   }
 }
@@ -137,7 +144,8 @@ void menu_select_callback(int index, void *ctx) {
 }
 
 void sifter_menu_init() {
-    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Calling sifter_menu_init");
+  app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Calling sifter_menu_init");
+
   // Initialize the menu window
   sifter_menu_data.window = window_create();
   window_stack_push(sifter_menu_data.window, true /* Animated */ );
@@ -187,7 +195,7 @@ void main_screen_handle_init(void) {
   main_screen_data.sifter_name_layer = text_layer_create(GRect(0, 0, 144, sifter_name_layer_vert_size));
   text_layer_set_text_alignment(main_screen_data.sifter_name_layer, GTextAlignmentCenter);
   // TODO: This should be pulled from initial_values
-  text_layer_set_text(main_screen_data.sifter_name_layer, "Sifter Name");
+  text_layer_set_text(main_screen_data.sifter_name_layer, "Working...");
   layer_add_child(window_get_root_layer(main_screen_data.window), text_layer_get_layer(main_screen_data.sifter_name_layer));
 
   // Initialize the scroll layer
@@ -199,8 +207,7 @@ void main_screen_handle_init(void) {
 
   // Initialize the sifter text layer
   main_screen_data.sifter_text_layer = text_layer_create(max_text_bounds);
-  // TODO: This should be pulled from initial_values
-  text_layer_set_text(main_screen_data.sifter_text_layer, "Sifted Text");
+  text_layer_set_text(main_screen_data.sifter_text_layer, "Please wait while the sifter list is populated.");
 
   // Trim text layer and scroll content to fit text box
   GSize max_size = text_layer_get_content_size(main_screen_data.sifter_text_layer);
