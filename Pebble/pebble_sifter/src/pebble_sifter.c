@@ -118,7 +118,7 @@ static void receive_handshake_cmd(DictionaryIterator *iter, void *context) {
     // Set initial values for app sync
     Tuplet initial_values[] = {
       TupletCString(SIFTER_PEBBLE_NAME_KEY, "Ready!"),
-      TupletCString(SIFTER_TEXT_KEY, "Please wait while the sifter list is populated."),
+      TupletCString(SIFTER_TEXT_KEY, "Please select a sifter from the menu."),
     };
 
     // Initialize app sync
