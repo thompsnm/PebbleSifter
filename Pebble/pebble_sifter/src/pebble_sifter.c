@@ -18,7 +18,7 @@ static struct MainScreenData {
   TextLayer *sifter_text_layer;
   ScrollLayerCallbacks scroll_layer_callbacks;
   AppSync sync;
-  uint8_t sync_buffer[1024];
+  uint8_t sync_buffer[4096];
 } main_screen_data;
 
 static struct SifterMenuData {
@@ -193,7 +193,6 @@ void main_screen_handle_init(void) {
   // Initialize the sifter name layer and add it to the window
   main_screen_data.sifter_name_layer = text_layer_create(GRect(0, 0, 144, sifter_name_layer_vert_size));
   text_layer_set_text_alignment(main_screen_data.sifter_name_layer, GTextAlignmentCenter);
-  // TODO: This should be pulled from initial_values
   text_layer_set_text(main_screen_data.sifter_name_layer, "Working...");
   layer_add_child(window_get_root_layer(main_screen_data.window), text_layer_get_layer(main_screen_data.sifter_name_layer));
 
@@ -217,7 +216,7 @@ void main_screen_handle_init(void) {
   scroll_layer_add_child(main_screen_data.sifter_text_scroll_layer, text_layer_get_layer(main_screen_data.sifter_text_layer));
   layer_add_child(window_get_root_layer(main_screen_data.window), scroll_layer_get_layer(main_screen_data.sifter_text_scroll_layer));
 
-  // Initialize AppSync
+  // Register message handler
   app_message_register_inbox_received((AppMessageInboxReceived) receive_handshake_cmd);
 
   // Initialize handshake
