@@ -44,16 +44,17 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
   switch (key) {
-    text_layer_set_text(main_screen_data.sifter_name_layer, new_tuple->value->cstring);
-    break;
-  case SIFTER_TEXT_KEY:
-    text_layer_set_text(main_screen_data.sifter_text_layer, new_tuple->value->cstring);
-    GSize max_size = text_layer_get_content_size(main_screen_data.sifter_text_layer);
-    text_layer_set_size(main_screen_data.sifter_text_layer, max_size);
-    scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
-    break;
-  default:
-    return;
+    case SIFTER_PEBBLE_NAME_KEY:
+      text_layer_set_text(main_screen_data.sifter_name_layer, new_tuple->value->cstring);
+      break;
+    case SIFTER_TEXT_KEY:
+      text_layer_set_text(main_screen_data.sifter_text_layer, new_tuple->value->cstring);
+      GSize max_size = text_layer_get_content_size(main_screen_data.sifter_text_layer);
+      text_layer_set_size(main_screen_data.sifter_text_layer, max_size);
+      scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, GSize(144, max_size.h + vert_scroll_text_padding));
+      break;
+    default:
+      return;
   }
 }
 
@@ -85,44 +86,6 @@ static void send_handshake_cmd() {
   dict_write_end(iter);
 
   app_message_outbox_send();
-}
-
-static void receive_handshake_cmd(DictionaryIterator *iter, void *context) {
-  app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Calling receive_handshake_cmd");
-
-  Tuple *menu_name_tuple = dict_find(iter, SIFTER_PEBBLE_MENU_NAME_KEY);
-  if (menu_name_tuple) {
-    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found SIFTER_PEBBLE_MENU_NAME_KEY with value %s and length %d", menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
-    strncpy(sifter_names[num_sifters], menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
-  }
-
-  Tuple *full_name_tuple = dict_find(iter, SIFTER_FULL_NAME_KEY);
-  if (full_name_tuple) {
-    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found SIFTER_FULL_NAME_KEY with value %s and length %d", full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
-    strncpy(sifter_full_names[num_sifters], full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
-    num_sifters++;
-  }
-
-  Tuple *handshake_stop_tuple = dict_find(iter, HANDSHAKE_SUCCESS_KEY);
-  if (handshake_stop_tuple) {
-    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found HANDSHAKE_SUCCESS_KEY");
-
-    // De-register message handler
-    app_message_register_inbox_received(NULL);
-
-    // Update message displayed on screen
-    text_layer_set_text(main_screen_data.sifter_name_layer, "Ready!");
-    text_layer_set_text(main_screen_data.sifter_text_layer, "Please wait while the sifter list is populated.");
-
-    // Set initial values for app sync
-    Tuplet initial_values[] = {
-      TupletCString(SIFTER_PEBBLE_NAME_KEY, "Ready!"),
-      TupletCString(SIFTER_TEXT_KEY, "Please select a sifter from the menu."),
-    };
-
-    // Initialize app sync
-    app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
-  }
 }
 
 static void handle_deinit(void) {
@@ -180,6 +143,49 @@ void click_config_provider(Window *window) {
   window_single_click_subscribe(BUTTON_ID_SELECT, (ClickHandler) select_single_click_handler);
 }
 
+static void receive_handshake_cmd(DictionaryIterator *iter, void *context) {
+  app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Calling receive_handshake_cmd");
+
+  Tuple *menu_name_tuple = dict_find(iter, SIFTER_PEBBLE_MENU_NAME_KEY);
+  if (menu_name_tuple) {
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found SIFTER_PEBBLE_MENU_NAME_KEY with value %s and length %d", menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
+    strncpy(sifter_names[num_sifters], menu_name_tuple->value->cstring, strlen(menu_name_tuple->value->cstring));
+  }
+
+  Tuple *full_name_tuple = dict_find(iter, SIFTER_FULL_NAME_KEY);
+  if (full_name_tuple) {
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found SIFTER_FULL_NAME_KEY with value %s and length %d", full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
+    strncpy(sifter_full_names[num_sifters], full_name_tuple->value->cstring, strlen(full_name_tuple->value->cstring));
+    num_sifters++;
+  }
+
+  Tuple *handshake_stop_tuple = dict_find(iter, HANDSHAKE_SUCCESS_KEY);
+  if (handshake_stop_tuple) {
+    app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, "Found HANDSHAKE_SUCCESS_KEY");
+
+    // De-register message handler
+    app_message_register_inbox_received(NULL);
+
+    // Register select click handler
+    main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
+    scroll_layer_set_callbacks(main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
+    scroll_layer_set_click_config_onto_window(main_screen_data.sifter_text_scroll_layer, main_screen_data.window);
+
+    // Update message displayed on screen
+    text_layer_set_text(main_screen_data.sifter_name_layer, "Ready!");
+    text_layer_set_text(main_screen_data.sifter_text_layer, "Please wait while the sifter list is populated.");
+
+    // Set initial values for app sync
+    Tuplet initial_values[] = {
+      TupletCString(SIFTER_PEBBLE_NAME_KEY, "Ready!"),
+      TupletCString(SIFTER_TEXT_KEY, "Please select a sifter from the menu."),
+    };
+
+    // Initialize app sync
+    app_sync_init(&main_screen_data.sync, main_screen_data.sync_buffer, sizeof(main_screen_data.sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
+  }
+}
+
 void main_screen_handle_init(void) {
   const GRect max_text_bounds = GRect(0, 0, 144, 2000);
 
@@ -198,9 +204,6 @@ void main_screen_handle_init(void) {
 
   // Initialize the scroll layer
   main_screen_data.sifter_text_scroll_layer = scroll_layer_create(GRect(0, sifter_name_layer_vert_size, 144, (168 - sifter_name_layer_vert_size - header_display_height)));
-  main_screen_data.scroll_layer_callbacks.click_config_provider = (ClickConfigProvider) click_config_provider;
-  scroll_layer_set_callbacks(main_screen_data.sifter_text_scroll_layer, main_screen_data.scroll_layer_callbacks);
-  scroll_layer_set_click_config_onto_window(main_screen_data.sifter_text_scroll_layer, main_screen_data.window);
   scroll_layer_set_content_size(main_screen_data.sifter_text_scroll_layer, max_text_bounds.size);
 
   // Initialize the sifter text layer
