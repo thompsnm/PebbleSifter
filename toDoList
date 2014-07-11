@@ -1,6 +1,7 @@
 Necessary for release:
 
 TODO: Fix bug where Android app crashes when Pebble app opens if Android app is running in background
+TODO: Fix bug where data from Team Trivia Sifter isn't being shown on watch
 TODO: Add Pebble app icon
 TODO: Add Android app icon
 TODO: Fill out README
