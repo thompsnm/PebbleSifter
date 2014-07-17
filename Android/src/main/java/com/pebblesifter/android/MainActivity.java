@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.getpebble.android.kit.PebbleKit;
@@ -26,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    DrawApp drawApp = new DrawApp(this);
+    DrawApp drawApp = new DrawApp(this, sifters.size() == 0);
     drawApp.execute();
   }
 
@@ -41,8 +42,9 @@ public class MainActivity extends ActionBarActivity {
   }
 
   @Override
-  protected void onResume() {
-      super.onResume();
+  protected void onStop() {
+    ((ViewGroup)this.findViewById(R.id.button_layout)).removeAllViews();
+    super.onStop();
   }
 
   @Override

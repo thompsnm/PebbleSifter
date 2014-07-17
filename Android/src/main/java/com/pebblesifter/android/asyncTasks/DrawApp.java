@@ -31,10 +31,12 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
   private final int MAX_RETRIES = 3;
 
   Activity activity;
+  boolean setSifters;
   private ProgressDialog dialog;
 
-  public DrawApp(Activity activity) {
+  public DrawApp(Activity activity, boolean setSifters) {
     this.activity = activity;
+    this.setSifters = setSifters;
     dialog = new ProgressDialog(activity);
   }
 
@@ -46,17 +48,21 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
 
   @Override
   protected ArrayList<String> doInBackground(Object... objects) {
-    // As new sifters are implemented, add them here.
-    MainActivity.sifters.add(new TeamTriviaAnswerSifter());
-    MainActivity.sifters.add(new HartmannGameStatusSifter());
+    if (setSifters) {
+      // As new sifters are implemented, add them here.
+      MainActivity.sifters.add(new TeamTriviaAnswerSifter());
+      MainActivity.sifters.add(new HartmannGameStatusSifter());
 
-    ArrayList<String> sifterNames = new ArrayList<String>();
+      ArrayList<String> sifterNames = new ArrayList<String>();
 
-    for (PebbleSifter sifter : MainActivity.sifters) {
-      sifterNames.add(sifter.getFullName());
+      for (PebbleSifter sifter : MainActivity.sifters) {
+        sifterNames.add(sifter.getFullName());
+      }
+
+      return sifterNames;
+    } else {
+      return null;
     }
-
-    return sifterNames;
   }
 
   @Override
@@ -68,27 +74,27 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
     SetSifter setSifter = new SetSifter(activity);
     setSifter.execute(MainActivity.sifters.get(0));
 
-    for (int i = 0; i < sifterNames.size(); i++) {
-      final PebbleSifter sifter = MainActivity.sifters.get(i);
+    if (setSifters) {
+      for (int i = 0; i < sifterNames.size(); i++) {
+        final PebbleSifter sifter = MainActivity.sifters.get(i);
 
-      Button sifterButton = new Button(activity);
-      sifterButton.setText(sifterNames.get(i));
+        Button sifterButton = new Button(activity);
+        sifterButton.setText(sifterNames.get(i));
 
-      View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          SetSifter setSifter = new SetSifter(activity);
-          setSifter.execute(sifter);
-        }
-      };
+        View.OnClickListener listener = new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            SetSifter setSifter = new SetSifter(activity);
+            setSifter.execute(sifter);
+          }
+        };
 
-      sifterButton.setOnClickListener(listener);
-      MainActivity.sifterButtons.add(sifterButton);
+        sifterButton.setOnClickListener(listener);
+        MainActivity.sifterButtons.add(sifterButton);
+      }
     }
 
     LinearLayout linearLayout = (LinearLayout)activity.findViewById(R.id.button_layout);
-    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
     for (Button sifterButton : MainActivity.sifterButtons) {
       linearLayout.addView(sifterButton);
