@@ -26,9 +26,13 @@ public class MainActivity extends ActionBarActivity {
     Log.i("MainActivity", "Called onCreate");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+  }
 
+  @Override
+  protected void onStart() {
     DrawApp drawApp = new DrawApp(this, sifters.size() == 0);
     drawApp.execute();
+    super.onStart();
   }
 
   @Override
