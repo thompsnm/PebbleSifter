@@ -18,7 +18,7 @@ static struct MainScreenData {
   TextLayer *sifter_text_layer;
   ScrollLayerCallbacks scroll_layer_callbacks;
   AppSync sync;
-  uint8_t sync_buffer[4096];
+  uint8_t sync_buffer[1024];
 } main_screen_data;
 
 static struct SifterMenuData {
@@ -38,8 +38,41 @@ enum {
   HANDSHAKE_FAIL_KEY = 0x5,            // TUPLE_INTEGER
 };
 
+char *translate_app_message_error(AppMessageResult result) {
+  switch (result) {
+    case APP_MSG_OK: return "APP_MSG_OK";
+    case APP_MSG_SEND_TIMEOUT: return "APP_MSG_SEND_TIMEOUT";
+    case APP_MSG_SEND_REJECTED: return "APP_MSG_SEND_REJECTED";
+    case APP_MSG_NOT_CONNECTED: return "APP_MSG_NOT_CONNECTED";
+    case APP_MSG_APP_NOT_RUNNING: return "APP_MSG_APP_NOT_RUNNING";
+    case APP_MSG_INVALID_ARGS: return "APP_MSG_INVALID_ARGS";
+    case APP_MSG_BUSY: return "APP_MSG_BUSY";
+    case APP_MSG_BUFFER_OVERFLOW: return "APP_MSG_BUFFER_OVERFLOW";
+    case APP_MSG_ALREADY_RELEASED: return "APP_MSG_ALREADY_RELEASED";
+    case APP_MSG_CALLBACK_ALREADY_REGISTERED: return "APP_MSG_CALLBACK_ALREADY_REGISTERED";
+    case APP_MSG_CALLBACK_NOT_REGISTERED: return "APP_MSG_CALLBACK_NOT_REGISTERED";
+    case APP_MSG_OUT_OF_MEMORY: return "APP_MSG_OUT_OF_MEMORY";
+    case APP_MSG_CLOSED: return "APP_MSG_CLOSED";
+    case APP_MSG_INTERNAL_ERROR: return "APP_MSG_INTERNAL_ERROR";
+    default: return "UNKNOWN ERROR";
+  }
+}
+
+char *translate_dictionary_error(DictionaryResult result) {
+  switch (result) {
+    case DICT_OK: return "DICT_OK";
+    case DICT_NOT_ENOUGH_STORAGE: return "DICT_NOT_ENOUGH_STORAGE";
+    case DICT_INVALID_ARGS: return "DICT_INVALID_ARGS";
+    case DICT_INTERNAL_INCONSISTENCY: return "DICT_INTERNAL_INCONSISTENCY";
+    case DICT_MALLOC_FAILED: return "DICT_MALLOC_FAILED";
+    default: return "UNKNOWN ERROR";
+  }
+}
+
 static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
-    app_log(APP_LOG_LEVEL_WARNING, __FILE__, __LINE__, "Error in AppSync.");
+    app_log(APP_LOG_LEVEL_ERROR, __FILE__, __LINE__, "Error in AppSync:");
+    app_log(APP_LOG_LEVEL_ERROR, __FILE__, __LINE__, "AppMessageResult: %s", translate_app_message_error(app_message_error));
+    app_log(APP_LOG_LEVEL_ERROR, __FILE__, __LINE__, "DictionaryResult: %s", translate_dictionary_error(dict_error));
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {

@@ -49,7 +49,9 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
   @Override
   protected ArrayList<String> doInBackground(Object... objects) {
     if (setSifters) {
-      // As new sifters are implemented, add them here.
+      ////////////////////////////////////////////////////
+      // As new sifters are implemented, add them here. //
+      ////////////////////////////////////////////////////
       MainActivity.sifters.add(new TeamTriviaAnswerSifter());
       MainActivity.sifters.add(new HartmannGameStatusSifter());
 
