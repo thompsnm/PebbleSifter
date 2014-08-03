@@ -1,6 +1,0 @@
-# Ignore generated files
-app_resources.pbpack
-app_resources.pbpack.manifest
-config.log
-pebble-app.bin
-pebble_sifter.pbw

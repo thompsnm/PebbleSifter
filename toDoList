@@ -1,13 +1,12 @@
 Necessary for release:
 
-TODO: Add Pebble app icon
-TODO: Add Android app icon
 TODO: Fill out README
+TODO: Clean up repository (update gitignore and remove files)
+TODO: Rev version number
 
 
 Nice to have:
 
 TODO: Refactor Pebble code into multiple files
-TODO: Clean up repository (update gitignore and remove files)
 TODO: Add documentation
 TODO: Figure out why Sifted Text is limited to 96 characters

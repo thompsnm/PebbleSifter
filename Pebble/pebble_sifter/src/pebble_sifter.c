@@ -29,13 +29,13 @@ static struct SifterMenuData {
 } sifter_menu_data;
 
 enum {
-  SIFTER_PEBBLE_NAME_KEY = 0x0,        // TUPLE_CSTRING
-  SIFTER_TEXT_KEY = 0x1,               // TUPLE_CSTRING
-  SIFTER_FULL_NAME_KEY = 0x2,          // TUPLE_CSTRING
-  SIFTER_PEBBLE_MENU_NAME_KEY = 0x3,   // TUPLE_CSTRING
-  HANDSHAKE_INIT_KEY = 0x4,            // TUPLE_INTEGER
-  HANDSHAKE_SUCCESS_KEY = 0x5,         // TUPLE_INTEGER
-  HANDSHAKE_FAIL_KEY = 0x5,            // TUPLE_INTEGER
+  SIFTER_PEBBLE_NAME_KEY = 0x0,
+  SIFTER_TEXT_KEY = 0x1,
+  SIFTER_FULL_NAME_KEY = 0x2,
+  SIFTER_PEBBLE_MENU_NAME_KEY = 0x3,
+  HANDSHAKE_INIT_KEY = 0x4,
+  HANDSHAKE_SUCCESS_KEY = 0x5,
+  HANDSHAKE_FAIL_KEY = 0x6,
 };
 
 char *translate_app_message_error(AppMessageResult result) {

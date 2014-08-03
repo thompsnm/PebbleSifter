@@ -1,13 +1,13 @@
 Archive member included because of file (symbol)
 
 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                              src/pebble_sifter.c.7.o (app_event_loop)
+                              src/pebble_sifter.c.8.o (app_event_loop)
 
 Allocating common symbols
 Common symbol       size              file
 
-sifter_full_names   0x280             src/pebble_sifter.c.7.o
-sifter_names        0x140             src/pebble_sifter.c.7.o
+sifter_full_names   0x280             src/pebble_sifter.c.8.o
+sifter_names        0x140             src/pebble_sifter.c.8.o
 
 Discarded input sections
 
@@ -23,16 +23,16 @@ Discarded input sections
  .jcr           0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .tm_clone_table
                 0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
- .text          0x0000000000000000        0x0 src/pebble_sifter.c.7.o
- .bss           0x0000000000000000        0x0 src/pebble_sifter.c.7.o
+ .text          0x0000000000000000        0x0 src/pebble_sifter.c.8.o
+ .bss           0x0000000000000000        0x0 src/pebble_sifter.c.8.o
  .rodata.sifter_name_layer_vert_size
-                0x0000000000000000        0x4 src/pebble_sifter.c.7.o
+                0x0000000000000000        0x4 src/pebble_sifter.c.8.o
  .rodata.vert_scroll_text_padding
-                0x0000000000000000        0x4 src/pebble_sifter.c.7.o
+                0x0000000000000000        0x4 src/pebble_sifter.c.8.o
  .rodata.header_display_height
-                0x0000000000000000        0x4 src/pebble_sifter.c.7.o
- .text          0x0000000000000000        0x0 appinfo.auto.c.7.o
- .bss           0x0000000000000000        0x0 appinfo.auto.c.7.o
+                0x0000000000000000        0x4 src/pebble_sifter.c.8.o
+ .text          0x0000000000000000        0x0 appinfo.auto.c.8.o
+ .bss           0x0000000000000000        0x0 appinfo.auto.c.8.o
  .bss           0x0000000000000000        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.accel_data_service_subscribe__deprecated
                 0x0000000000000000        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
@@ -575,8 +575,8 @@ Linker script and memory map
 
 LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
 LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-LOAD src/pebble_sifter.c.7.o
-LOAD appinfo.auto.c.7.o
+LOAD src/pebble_sifter.c.8.o
+LOAD appinfo.auto.c.8.o
 LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a
 START GROUP
 LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a
@@ -587,7 +587,7 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
 
 .header         0x0000000000000000       0x82
  *(.pbl_header)
- .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.7.o
+ .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.8.o
                 0x0000000000000000                __pbl_app_info
 
 .text           0x0000000000000084      0xbcd
@@ -595,34 +595,34 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
  .text          0x0000000000000084       0x14 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  *(.text.*)
  .text.sync_tuple_changed_callback
-                0x0000000000000098       0x68 src/pebble_sifter.c.7.o
+                0x0000000000000098       0x68 src/pebble_sifter.c.8.o
  .text.receive_handshake_cmd
-                0x0000000000000100      0x19c src/pebble_sifter.c.7.o
+                0x0000000000000100      0x19c src/pebble_sifter.c.8.o
  .text.click_config_provider
-                0x000000000000029c       0x10 src/pebble_sifter.c.7.o
+                0x000000000000029c       0x10 src/pebble_sifter.c.8.o
                 0x000000000000029c                click_config_provider
  .text.menu_select_callback
-                0x00000000000002ac       0x64 src/pebble_sifter.c.7.o
+                0x00000000000002ac       0x64 src/pebble_sifter.c.8.o
                 0x00000000000002ac                menu_select_callback
  .text.translate_app_message_error
-                0x0000000000000310       0xe8 src/pebble_sifter.c.7.o
+                0x0000000000000310       0xe8 src/pebble_sifter.c.8.o
                 0x0000000000000310                translate_app_message_error
  .text.translate_dictionary_error
-                0x00000000000003f8       0x54 src/pebble_sifter.c.7.o
+                0x00000000000003f8       0x54 src/pebble_sifter.c.8.o
                 0x00000000000003f8                translate_dictionary_error
  .text.sync_error_callback
-                0x000000000000044c       0x58 src/pebble_sifter.c.7.o
+                0x000000000000044c       0x58 src/pebble_sifter.c.8.o
  .text.sifter_menu_init
-                0x00000000000004a4       0xec src/pebble_sifter.c.7.o
+                0x00000000000004a4       0xec src/pebble_sifter.c.8.o
                 0x00000000000004a4                sifter_menu_init
  .text.select_single_click_handler
-                0x0000000000000590        0x4 src/pebble_sifter.c.7.o
+                0x0000000000000590        0x4 src/pebble_sifter.c.8.o
                 0x0000000000000590                select_single_click_handler
  .text.main_screen_handle_init
-                0x0000000000000594      0x134 src/pebble_sifter.c.7.o
+                0x0000000000000594      0x134 src/pebble_sifter.c.8.o
                 0x0000000000000594                main_screen_handle_init
  .text.startup.main
-                0x00000000000006c8       0x4c src/pebble_sifter.c.7.o
+                0x00000000000006c8       0x4c src/pebble_sifter.c.8.o
                 0x00000000000006c8                main
  .text.app_event_loop
                 0x0000000000000714        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
@@ -744,12 +744,12 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
                 0x00000000000008f4        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
                 0x00000000000008f4                window_single_click_subscribe
  *(.rodata)
- .rodata        0x0000000000000900       0x20 src/pebble_sifter.c.7.o
+ .rodata        0x0000000000000900       0x20 src/pebble_sifter.c.8.o
  *(.rodata*)
- .rodata.max_text_bounds.6527
-                0x0000000000000920        0x8 src/pebble_sifter.c.7.o
+ .rodata.max_text_bounds.6528
+                0x0000000000000920        0x8 src/pebble_sifter.c.8.o
  .rodata.str1.1
-                0x0000000000000928      0x329 src/pebble_sifter.c.7.o
+                0x0000000000000928      0x329 src/pebble_sifter.c.8.o
 
 .glue_7         0x0000000000000c54        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
@@ -775,8 +775,8 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
  .data          0x0000000000000c54        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
  .data          0x0000000000000c54        0x4 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
                 0x0000000000000c54                __dso_handle
- .data          0x0000000000000c58        0x0 src/pebble_sifter.c.7.o
- .data          0x0000000000000c58        0x0 appinfo.auto.c.7.o
+ .data          0x0000000000000c58        0x0 src/pebble_sifter.c.8.o
+ .data          0x0000000000000c58        0x0 appinfo.auto.c.8.o
  .data          0x0000000000000c58        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .data          0x0000000000000c58        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
  .data          0x0000000000000c58        0x0 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
@@ -792,19 +792,19 @@ LOAD /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/g
  .got.plt       0x0000000000000c60        0xc /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
                 0x0000000000000c60                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x0000000000000c6c     0x14b0
+.bss            0x0000000000000c6c      0x8b0
  *(.bss)
  *(.bss.*)
  .bss.main_screen_data
-                0x0000000000000c6c     0x1038 src/pebble_sifter.c.7.o
+                0x0000000000000c6c      0x438 src/pebble_sifter.c.8.o
  .bss.sifter_menu_data
-                0x0000000000001ca4       0xb4 src/pebble_sifter.c.7.o
+                0x00000000000010a4       0xb4 src/pebble_sifter.c.8.o
  .bss.num_sifters
-                0x0000000000001d58        0x4 src/pebble_sifter.c.7.o
-                0x0000000000001d58                num_sifters
- COMMON         0x0000000000001d5c      0x3c0 src/pebble_sifter.c.7.o
-                0x0000000000001d5c                sifter_full_names
-                0x0000000000001fdc                sifter_names
+                0x0000000000001158        0x4 src/pebble_sifter.c.8.o
+                0x0000000000001158                num_sifters
+ COMMON         0x000000000000115c      0x3c0 src/pebble_sifter.c.8.o
+                0x000000000000115c                sifter_full_names
+                0x00000000000013dc                sifter_names
 
 DISCARD
  libc.a(*)
@@ -820,9 +820,9 @@ OUTPUT(/Users/nathan.thompson/Projects/PebbleSifter/Pebble/pebble_sifter/build/p
  .ARM.attributes
                 0x0000000000000019       0x29 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .ARM.attributes
-                0x0000000000000042       0x33 src/pebble_sifter.c.7.o
+                0x0000000000000042       0x33 src/pebble_sifter.c.8.o
  .ARM.attributes
-                0x0000000000000075       0x33 appinfo.auto.c.7.o
+                0x0000000000000075       0x33 appinfo.auto.c.8.o
  .ARM.attributes
                 0x00000000000000a8       0x21 /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .ARM.attributes
@@ -833,39 +833,39 @@ OUTPUT(/Users/nathan.thompson/Projects/PebbleSifter/Pebble/pebble_sifter/build/p
 .comment        0x0000000000000000       0x4e
  .comment       0x0000000000000000       0x4e /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
                                          0x4f (size before relaxing)
- .comment       0x0000000000000000       0x4f src/pebble_sifter.c.7.o
- .comment       0x0000000000000000       0x4f appinfo.auto.c.7.o
+ .comment       0x0000000000000000       0x4f src/pebble_sifter.c.8.o
+ .comment       0x0000000000000000       0x4f appinfo.auto.c.8.o
  .comment       0x0000000000000000       0x4f /Users/nathan.thompson/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x1bc8
- .debug_info    0x0000000000000000     0x189c src/pebble_sifter.c.7.o
- .debug_info    0x000000000000189c      0x32c appinfo.auto.c.7.o
+.debug_info     0x0000000000000000     0x1bba
+ .debug_info    0x0000000000000000     0x1892 src/pebble_sifter.c.8.o
+ .debug_info    0x0000000000001892      0x328 appinfo.auto.c.8.o
 
-.debug_abbrev   0x0000000000000000      0x490
- .debug_abbrev  0x0000000000000000      0x3dc src/pebble_sifter.c.7.o
- .debug_abbrev  0x00000000000003dc       0xb4 appinfo.auto.c.7.o
+.debug_abbrev   0x0000000000000000      0x47e
+ .debug_abbrev  0x0000000000000000      0x3d3 src/pebble_sifter.c.8.o
+ .debug_abbrev  0x00000000000003d3       0xab appinfo.auto.c.8.o
 
 .debug_loc      0x0000000000000000      0x62e
- .debug_loc     0x0000000000000000      0x62e src/pebble_sifter.c.7.o
+ .debug_loc     0x0000000000000000      0x62e src/pebble_sifter.c.8.o
 
 .debug_aranges  0x0000000000000000       0x88
  .debug_aranges
-                0x0000000000000000       0x70 src/pebble_sifter.c.7.o
+                0x0000000000000000       0x70 src/pebble_sifter.c.8.o
  .debug_aranges
-                0x0000000000000070       0x18 appinfo.auto.c.7.o
+                0x0000000000000070       0x18 appinfo.auto.c.8.o
 
 .debug_ranges   0x0000000000000000       0xf0
- .debug_ranges  0x0000000000000000       0xf0 src/pebble_sifter.c.7.o
+ .debug_ranges  0x0000000000000000       0xf0 src/pebble_sifter.c.8.o
 
 .debug_line     0x0000000000000000      0x4ee
- .debug_line    0x0000000000000000      0x3be src/pebble_sifter.c.7.o
- .debug_line    0x00000000000003be      0x130 appinfo.auto.c.7.o
+ .debug_line    0x0000000000000000      0x3be src/pebble_sifter.c.8.o
+ .debug_line    0x00000000000003be      0x130 appinfo.auto.c.8.o
 
-.debug_str      0x0000000000000000      0xebf
- .debug_str     0x0000000000000000      0xd46 src/pebble_sifter.c.7.o
-                                        0xe2f (size before relaxing)
- .debug_str     0x0000000000000d46      0x179 appinfo.auto.c.7.o
-                                        0x2a2 (size before relaxing)
+.debug_str      0x0000000000000000      0xedd
+ .debug_str     0x0000000000000000      0xd45 src/pebble_sifter.c.8.o
+                                        0xe25 (size before relaxing)
+ .debug_str     0x0000000000000d45      0x198 appinfo.auto.c.8.o
+                                        0x2b7 (size before relaxing)
 
 .debug_frame    0x0000000000000000      0x134
- .debug_frame   0x0000000000000000      0x134 src/pebble_sifter.c.7.o
+ .debug_frame   0x0000000000000000      0x134 src/pebble_sifter.c.8.o
