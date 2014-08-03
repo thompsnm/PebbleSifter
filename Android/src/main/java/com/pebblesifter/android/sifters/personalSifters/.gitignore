@@ -1,3 +1,4 @@
 # Ignore everything but this file
 *
+!package-info.java
 !.gitignore

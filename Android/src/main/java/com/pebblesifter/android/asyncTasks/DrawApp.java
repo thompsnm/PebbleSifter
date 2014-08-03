@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
 
-  private final int MAX_RETRIES = 3;
-
   Activity activity;
   boolean setSifters;
   private ProgressDialog dialog;
