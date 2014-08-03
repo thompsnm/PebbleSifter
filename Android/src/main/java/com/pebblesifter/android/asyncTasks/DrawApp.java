@@ -2,23 +2,13 @@ package com.pebblesifter.android.asyncTasks;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.getpebble.android.kit.PebbleKit;
-import com.getpebble.android.kit.util.PebbleDictionary;
-import com.pebblesifter.android.Constants;
 import com.pebblesifter.android.MainActivity;
 import com.pebblesifter.android.R;
-import com.pebblesifter.android.dataReceivers.DefaultAckReceiver;
-import com.pebblesifter.android.dataReceivers.DefaultNackReceiver;
-import com.pebblesifter.android.dataReceivers.SifterDataReceiver;
 import com.pebblesifter.android.sifters.PebbleSifter;
 import com.pebblesifter.android.sifters.exampleSifters.HartmannGameStatusSifter;
 import com.pebblesifter.android.sifters.exampleSifters.TeamTriviaAnswerSifter;
@@ -50,7 +40,7 @@ public class DrawApp extends AsyncTask<Object, Integer, ArrayList<String>> {
   protected ArrayList<String> doInBackground(Object... objects) {
     if (setSifters) {
       ////////////////////////////////////////////////////
-      // As new sifters are implemented, add them here. //
+      // As new sifters are implemented, add them here: //
       ////////////////////////////////////////////////////
       MainActivity.sifters.add(new TeamTriviaAnswerSifter());
       MainActivity.sifters.add(new HartmannGameStatusSifter());

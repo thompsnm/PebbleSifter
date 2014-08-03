@@ -1,0 +1,13 @@
+Necessary for release:
+
+TODO: Rev version number
+
+
+Future enhancements:
+
+TODO: Add "Refresh" button in Android app to refresh the sifted text
+TODO: Provide capability to install Pebble app from Android app
+TODO: Figure out why Sifted Text is limited to 96 characters
+TODO: Refactor Pebble code into multiple files
+TODO: Refactor Pebble code to use appKeys
+TODO: Add documentation
