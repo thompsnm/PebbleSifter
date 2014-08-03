@@ -24,7 +24,7 @@ To create and use your own sifter:
 * Create a new class that extends PebbleSifter in the personalSifters directory
   * **Note:** The contents of the personalSifters directory has been added to the .gitignore file. It is highly recommended that you store your sifters in a separate repository to prevent them from being lost when working with PebbleSifter.
 * Override the sift(), getFullName(), getPebbleName(), and refresh() methods
-* Instantiate your sifter in the DrawApp class under the line that says "As new sifters are implemented, add them here:"
+* Instantiate your sifter and add it to the MainActivity.sifters ArrayList in the DrawApp class under the line that says "As new sifters are implemented, add them here:"
 * Re-install the Android Companion App
 
 For examples on how to create a sifter, checkout the exampleSifters directory. All examples use [jsoup](http://jsoup.org) for parsing HTML, but you can use whatever library you would like.

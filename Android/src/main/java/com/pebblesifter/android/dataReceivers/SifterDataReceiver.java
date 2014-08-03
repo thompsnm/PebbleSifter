@@ -7,15 +7,8 @@ import android.widget.Button;
 
 import com.pebblesifter.android.Constants;
 import com.pebblesifter.android.MainActivity;
-import com.pebblesifter.android.asyncTasks.DrawApp;
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
-import com.pebblesifter.android.asyncTasks.SendSifters;
-import com.pebblesifter.android.sifters.PebbleSifter;
-
-import java.util.ArrayList;
-
-import lombok.Setter;
 
 public class SifterDataReceiver extends PebbleKit.PebbleDataReceiver {
 
